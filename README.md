@@ -2,56 +2,60 @@
 
 ## Introducción
 
-En la actualidad, en la época de la digitalización, sigue habiendo un grupo de personas que siguen prefiriendo lo analógico ante lo digital. En el colectivo de lectores, ésta peculiaridad es más destacada por cierto romanticismo. Se antepone el formato físico al digital porque el lector disfruta de sentir el peso del libro y la textura de las hojas en sus manos. 
+Para este proyecto se va a considerar el supuesto de una biblioteca pública que necesita una herramienta para su gestión interna y funcionamiento. Se trata de una biblioteca local que pretende agilizar y/o digitalizar las pequeñas transacciones o préstamos que tienen lugar allí.
 
-También es común, en este grupo de personas, el querer compartir su opinión sobre sus lecturas, recomendar o buscar una recomendación, crear grupos de lectura, etc.
-
-Esto es lo que pretende Papyros, crear una comunidad de lectores que tengan a su disposición una gran biblioteca desde la que puedan solicitar libros en formato físico durante un límite de tiempo.
-
-Es un proyecto para la comunidad lectora que a la vez dependerá de ella misma, ya que funcionará a base de donaciones mínimas por el préstamo de libros. Este sistema permitirá adquirir fondos suficientes para comprar libros de segunda mano y añadirlos a la biblioteca y así seguir creciendo.
+Para satisfacer éstas necesidades se va a desarrollar una aplicación, que bien en realidad sería una aplicación de escritorio, pero para cumplir ciertos requisitos se realizará con una arquetectura web cliente-servidor.
 
 ## Objetivo
 
-Como ya he mencionado antes, el objetivo principal será proporcionar una plataforma donde la comunidad lectora pueda compartir recomendaciones y solicitar el prestamo de libros con una donación mínima.
+Como ya he mencionado antes, el objetivo principal será proporcionar una plataforma donde el empleado público pueda todas las gestiones básicas con facilidad.
 
-Es importante recordar que los objetivos pueden ir variando a medida que el proyecto avanza. Al fin y al cabo al ser un proyecto de clase puedo ir regulando la complejidad de éste.
+Es importante recordar que los objetivos pueden ir variando a medida que el proyecto avanza. Al fin y al cabo al ser un proyecto de clase se puede ir regulando la complejidad de éste.
 
-Entrando más en detalle, Papyros pretende cumplir con los siguientes objetivos:
+Entrando más en detalle, Papyrus pretende cumplir con los siguientes objetivos:
 
-- Proporcionar una gran BBDD de libros
-- Ofrecer una categorización avanzada (valoración, nº lecturas, etc) de esos libros
-- Crear una inferfaz donde los usuarios puedan añadir nuevos libros
-- Ofrecer una plataforma donde se pueda crear una comunidad de lectores
-- Disponer de libros físicos para realizar préstamos
-- Para la comunidad y de la comunidad
+- Insertar nuevos libros en la biblioteca
+- Borrar libros de la biblioteca
+- Modificar libros que ya se encuentren en la BBDD
+- Marcar liros como no disponibles
+- Ofrecer una categorización de los libros
+- Gestión de socios
+- Gestión de préstamos
 
 ## Herramientas
 
-Igual que en el apartado anterior, las herramientas que planeo utilizar pueden variar mientras avanzo en el proyecto. Utilizar el siguiente stack de tecnologías sería lo ideal.
+Igual que en el apartado anterior, las herramientas que se planean utilizar pueden variar en cuanto a capas superiores para aumentar la abstracción. Pero el núcleo de desarrollo será siempre constante.
 
-A continuación expongo las tecnologías que quiero usar en el lado front end:
+A continuación se exponen las tecnologías del lado front-end:
 
-- Diseño y maquetación: HTML, CSS, SASS, Bootstrap y Font Awesome
-- Desarrollo: JavaScript, JQuery y AJAX
+- Núcleo: HTML, CSS, JavaScript, Sass y Bootstrap 
+- Capa A: webpack y MVC
+- Capa B: React
 
-Para el back end:
+Para el back-end:
 
-- Desarrollo: PHP y Laravel
-- BBDD: MySQL, phpMyAdmin y MYSQL Workbench
-- Servidor: Apache y Ubuntu 20.04
+- Desarrollo: 
+    - Núcleo: Java EE 8+ (JDBC, JSP, Servlets, MVC)
+    - Capa A: Hibernate, Spring MVC
+    - Capa B: Spring Rest, Thymeleaf
+- BBDD: PostgreSQL y pgAdmin
+- Servidor: Apache Tomcat 9+ y Ubuntu 20.04
+
+La idea es separar el desarrollo en dos subproyectos, separar el lado cliente del servidor, conectados por peticiones HTTP. Aunque el desarrollo de ambas partes se realizará de manera simultánea para una mayor sinergia.
 
 ## Planificación
 
-Es muy difícil determinar el tiempo que me llevará desarrollar cada módulo del proyecto, por lo que no voy a relizar una planificación tradicional sobre las apartados del proyecto.
+Es muy difícil determinar el tiempo que llevará desarrollar cada módulo del proyecto, por lo que no se relizará una planificación tradicional sobre los apartados del proyecto.
 
-Sólo hay dos constantes: el comienzo de las prácticas en empresas y la fecha de entrega del proyecto. Por lo tanto, de momento lo único que puedo decir con certeza es lo siguiente:
+Sin embargo, se dividirá el proyecto de la siguiente manera:
 
-- Antes de las prácticas: 
-    - Tener preparado todo el entorno de desarrollo 
-    - Haber aprendido las bases de las tecnologías a usar
-    - Tener la idea general consolidada que se va a desarrollar
-    - Haber dado las primeras pinceladas
+- Abril:
+    - Familiarizarse con las herramientas núcleo del proyecto
+    - Realizar pequeñas prácticas (simulaciones) con el stack de tecnologías
+    - Crear el modelo de datos más eficiente
 
-- Después de las prácticas: realizar todo el desarrollo.
+- Mayo - Junio:
+    - Preparar el entorno de desarrollo
+    - Realizar el desarrollo en paralelo del front-end y el back-end
 
 Por último, todo el desarrollo del proyecto se irá registrando en Github.
