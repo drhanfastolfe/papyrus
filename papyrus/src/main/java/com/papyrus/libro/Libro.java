@@ -70,7 +70,7 @@ public class Libro
 		return anio;
 	}
 
-	public void setAnio(short anio)
+	public void setAnio(int anio)
 	{
 		this.anio = anio;
 	}

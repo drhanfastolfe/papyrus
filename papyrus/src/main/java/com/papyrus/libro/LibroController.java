@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -14,22 +16,28 @@ public class LibroController
 	@Autowired
 	private LibroService service;
 	
-	@RequestMapping("/lista")
-	public String listaLibros(Model model)
+	@GetMapping("/lista")
+	public String vistaListaLibros(Model model)
 	{
-		List<Libro> listaLibros = service.listAll();
+		List<Libro> listaLibros = service.listarTodo();
 		model.addAttribute("listaLibros", listaLibros);
 		
 		return "libro/listaLibros";
 	}
 
-	// todo
-	@RequestMapping("/agregar")
-	public String agregarLibro(Model model)
+	@GetMapping("/form")
+	public String vistaAgregarLibro(Model model)
 	{
-		Libro libro = new Libro();
-		model.addAttribute("libro", libro);
+		model.addAttribute("libro", new Libro());
+
+		return "libro/formLibro";
+	}
+
+	@PostMapping("/agregar")
+	public String agregarLibro(Libro libro, Model model)
+	{
+		service.agregar(libro);
 		
-		return "index";
+		return "redirect:/libro/lista";
 	}
 }

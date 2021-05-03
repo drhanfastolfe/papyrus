@@ -11,22 +11,22 @@ public class LibroService
 	@Autowired
 	private LibroRepository repo;
 	
-	public List<Libro> listAll()
+	public List<Libro> listarTodo()
 	{
 		return repo.findAll();
 	}
 	
-	public void save(Libro libro)
+	public void agregar(Libro libro)
 	{
 		repo.save(libro);
 	}
 	
-	public Libro get(long id)
+	public Libro obtener(long id)
 	{
 		return repo.findById(id).get();
 	}
 	
-	public void delete(long id)
+	public void borrar(long id)
 	{
 		repo.deleteById(id);
 	}
