@@ -18,9 +18,9 @@
                 <tr>
                     <th>ID</th>
                     <th>Título</th>
-                    <th>Autor</th>
-                    <th>Año</th>
-                    <th>Categoría</th>
+                    <th>Editorial</th>
+                    <th>ISBN</th>
+                    <th>Páginas</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -28,9 +28,9 @@
                 <tr th:each="libro : ${listaLibros}">
                     <td th:text="${libro.id}"></td>
                     <td th:text="${libro.titulo}"></td>
-                    <td th:text="${libro.autor}"></td>
-                    <td th:text="${libro.anio}"></td>
-                    <td th:text="${libro.categoria}"></td>
+                    <td th:text="${libro.editorial}"></td>
+                    <td th:text="${libro.isbn}"></td>
+                    <td th:text="${libro.paginas}"></td>
                     <td></td>
                 </tr>
             </tbody>

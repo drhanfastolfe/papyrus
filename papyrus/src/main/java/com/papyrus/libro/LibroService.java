@@ -16,17 +16,17 @@ public class LibroService
 		return repo.findAll();
 	}
 	
-	public void agregar(Libro libro)
+	public void insertar(Libro libro)
 	{
 		repo.save(libro);
 	}
 	
-	public Libro obtener(long id)
+	public Libro obtener(Long id)
 	{
 		return repo.findById(id).get();
 	}
 	
-	public void borrar(long id)
+	public void borrar(Long id)
 	{
 		repo.deleteById(id);
 	}

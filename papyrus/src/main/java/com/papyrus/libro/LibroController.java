@@ -26,17 +26,18 @@ public class LibroController
 	}
 
 	@GetMapping("/form")
-	public String vistaAgregarLibro(Model model)
+	public String vistaFormLibro(Model model)
 	{
-		model.addAttribute("libro", new Libro());
+		Libro libro = new Libro();
+		model.addAttribute("libro", libro);
 
 		return "libro/formLibro";
 	}
 
-	@PostMapping("/agregar")
-	public String agregarLibro(Libro libro, Model model)
+	@PostMapping("/insertar")
+	public String insertarLibro(Libro libro)
 	{
-		service.agregar(libro);
+		service.insertar(libro);
 		
 		return "redirect:/libro/lista";
 	}

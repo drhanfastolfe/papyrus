@@ -9,29 +9,25 @@
     <title>Agregar libro</title>
 </head>
 <body>
-    <form th:action="@{/libro/agregar}" th:object="${libro}" method="post">
+    <form th:action="@{/libro/insertar}" th:object="${libro}" method="post">
         <fieldset>
             <legend>Datos del libro</legend>
             <table>
-                <tr>
-                    <td><label>ID: </label></td>
-                    <td><input type="number" th:field="*{id}" /></td>
-                </tr>
                 <tr>
                     <td><label>Título: </label></td>
                     <td><input type="text" th:field="*{titulo}" /></td>
                 </tr>
                 <tr>
-                    <td><label>Autor: </label></td>
-                    <td><input type="text" th:field="*{autor}" /></td>
+                    <td><label>Editorial: </label></td>
+                    <td><input type="text" th:field="*{editorial}" /></td>
                 </tr>
                 <tr>
-                    <td><label>Año: </label></td>
-                    <td><input type="number" th:field="*{anio}" /></td>
+                    <td><label>ISBN: </label></td>
+                    <td><input type="text" th:field="*{isbn}" /></td>
                 </tr>
                 <tr>
-                    <td><label>Categoría: </label></td>
-                    <td><input type="text" th:field="*{categoria}" /></td>
+                    <td><label>Páginas: </label></td>
+                    <td><input type="text" th:field="*{paginas}" /></td>
                 </tr>
                 <tr>
                     <td>

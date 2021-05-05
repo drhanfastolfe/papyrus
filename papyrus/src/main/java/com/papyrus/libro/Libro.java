@@ -1,38 +1,51 @@
 package com.papyrus.libro;
 
-import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.papyrus.ejemplar.Ejemplar;
 
 @Entity
-@Table
-public class Libro
+public class Libro 
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	private String titulo;
-	private String autor;
-	private int anio;
-	private String categoria;
+	private int anio_pub;
+
+	@OneToMany(mappedBy = "libro", cascade = CascadeType.ALL)
+    private List<Ejemplar> ejemplares;
 
 	public Libro()
 	{
 	}
 
-	public Libro(String titulo, String autor, short anio, String categoria)
+	public Libro(String titulo, int anio_pub)
 	{
 		this.titulo = titulo;
-		this.autor = autor;
-		this.anio = anio;
-		this.categoria = categoria;
+		this.anio_pub = anio_pub;
 	}
 
-	public Libro(Long id, String titulo, String autor, short anio, String categoria)
+	public List<Ejemplar> getEjemplares()
 	{
-		this.id = id;
-		this.titulo = titulo;
-		this.autor = autor;
-		this.anio = anio;
-		this.categoria = categoria;
+		if (this.ejemplares == null) 
+		{
+			this.ejemplares = new ArrayList<>();
+		}
+		return ejemplares;
+	}
+
+	public void setEjemplares(List<Ejemplar> ejemplares)
+	{
+		this.ejemplares = ejemplares;
 	}
 
 	public Long getId()
@@ -55,40 +68,13 @@ public class Libro
 		this.titulo = titulo;
 	}
 
-	public String getAutor()
+	public int getAnio_pub()
 	{
-		return autor;
+		return anio_pub;
 	}
 
-	public void setAutor(String autor)
+	public void setAnio_pub(int anio_pub)
 	{
-		this.autor = autor;
-	}
-
-	public int getAnio()
-	{
-		return anio;
-	}
-
-	public void setAnio(int anio)
-	{
-		this.anio = anio;
-	}
-
-	public String getCategoria()
-	{
-		return categoria;
-	}
-
-	public void setCategoria(String categoria)
-	{
-		this.categoria = categoria;
-	}
-
-	@Override
-	public String toString()
-	{
-		return "Libro [id=" + id + ", titulo=" + titulo + ", autor=" + autor + ", anio=" + anio + ", categoria="
-				+ categoria + "]";
+		this.anio_pub = anio_pub;
 	}
 }
