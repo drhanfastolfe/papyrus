@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AppMain
+public class PapyrusMain
 {
 	public static void main(String[] args)
 	{
-		SpringApplication.run(AppMain.class, args);
+		SpringApplication.run(PapyrusMain.class, args);
 	}
 }

@@ -16,6 +16,7 @@ public class Ejemplar
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String estado;
+    private int libro_id;
 
     @ManyToOne
     @JoinColumn(name = "libro_id")
@@ -24,6 +25,16 @@ public class Ejemplar
     public Ejemplar(String estado)
     {
         this.estado = estado;
+    }
+
+    public int getLibro_id()
+    {
+        return libro_id;
+    }
+
+    public void setLibro_id(int libro_id)
+    {
+        this.libro_id = libro_id;
     }
 
     public Libro getLibro()
