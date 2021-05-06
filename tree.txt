@@ -1,0 +1,84 @@
+.
+├── db
+│   ├── data.sql
+│   ├── er.pgerd
+│   └── schema.sql
+├── papyrus
+│   ├── HELP.md
+│   ├── mvnw
+│   ├── mvnw.cmd
+│   ├── pom.xml
+│   ├── src
+│   │   ├── main
+│   │   │   ├── java
+│   │   │   │   └── com
+│   │   │   │       └── papyrus
+│   │   │   │           ├── autor
+│   │   │   │           │   └── Autor.java
+│   │   │   │           ├── categoria
+│   │   │   │           │   └── Categoria.java
+│   │   │   │           ├── ejemplar
+│   │   │   │           │   ├── Ejemplar.java
+│   │   │   │           │   ├── EjemplarRepository.java
+│   │   │   │           │   └── EjemplarService.java
+│   │   │   │           ├── libro
+│   │   │   │           │   ├── LibroController.java
+│   │   │   │           │   ├── Libro.java
+│   │   │   │           │   ├── LibroRepository.java
+│   │   │   │           │   └── LibroService.java
+│   │   │   │           ├── main
+│   │   │   │           │   ├── MainController.java
+│   │   │   │           │   └── MainService.java
+│   │   │   │           ├── PapyrusMain.java
+│   │   │   │           └── seccion
+│   │   │   │               └── Seccion.java
+│   │   │   └── resources
+│   │   │       ├── application.properties
+│   │   │       ├── static
+│   │   │       └── templates
+│   │   │           ├── index.html
+│   │   │           └── libro
+│   │   │               ├── formLibro.html
+│   │   │               └── listaLibros.html
+│   │   └── test
+│   │       └── java
+│   │           └── com
+│   │               └── papyrus
+│   │                   └── PapyrusApplicationTests.java
+│   └── target
+│       ├── classes
+│       │   ├── application.properties
+│       │   ├── com
+│       │   │   └── papyrus
+│       │   │       ├── autor
+│       │   │       │   └── Autor.class
+│       │   │       ├── categoria
+│       │   │       │   └── Categoria.class
+│       │   │       ├── ejemplar
+│       │   │       │   ├── Ejemplar.class
+│       │   │       │   ├── EjemplarRepository.class
+│       │   │       │   └── EjemplarService.class
+│       │   │       ├── libro
+│       │   │       │   ├── Libro.class
+│       │   │       │   ├── LibroController.class
+│       │   │       │   ├── LibroRepository.class
+│       │   │       │   └── LibroService.class
+│       │   │       ├── main
+│       │   │       │   ├── MainController.class
+│       │   │       │   └── MainService.class
+│       │   │       ├── PapyrusMain.class
+│       │   │       └── seccion
+│       │   │           └── Seccion.class
+│       │   └── templates
+│       │       ├── index.html
+│       │       └── libro
+│       │           ├── formLibro.html
+│       │           └── listaLibros.html
+│       └── test-classes
+│           └── com
+│               └── papyrus
+│                   └── PapyrusApplicationTests.class
+├── README.md
+└── tree.txt
+
+36 directories, 45 files
