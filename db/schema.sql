@@ -58,9 +58,10 @@ CREATE TABLE papyrus.prestamo
 (
     socio_id serial NOT NULL,
     ejemplar_id serial NOT NULL,
+    empleado_id serial NOT NULL,
     fecha_inicio date NOT NULL,
     fecha_fin date NOT NULL,
-    PRIMARY KEY (socio_id, ejemplar_id)
+    PRIMARY KEY (socio_id, ejemplar_id, empleado_id)
 );
 
 CREATE TABLE papyrus.libro_categoria
@@ -120,6 +121,10 @@ ALTER TABLE papyrus.prestamo
     REFERENCES papyrus.ejemplar (id)
     NOT VALID;
 
+ALTER TABLE papyrus.prestamo
+    ADD FOREIGN KEY (empleado_id)
+    REFERENCES papyrus.empleado (id)
+    NOT VALID;
 
 ALTER TABLE papyrus.libro_categoria
     ADD FOREIGN KEY (libro_id)
