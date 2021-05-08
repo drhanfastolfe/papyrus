@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 import com.papyrus.autor.Autor;
 import com.papyrus.categoria.Categoria;
 import com.papyrus.ejemplar.Ejemplar;
+import com.papyrus.libro_editorial.LibroEditorial;
 import com.papyrus.seccion.Seccion;
 
 @Entity
@@ -31,6 +32,13 @@ public class Libro
 
 	@OneToMany(mappedBy = "libro", cascade = CascadeType.ALL)
     private List<Ejemplar> ejemplares;
+
+	@OneToMany(mappedBy = "libro", cascade = CascadeType.ALL)
+    private List<LibroEditorial> libroEditoriales;
+
+	@ManyToOne
+	@JoinColumn(name = "seccion_id")
+	private Seccion seccion;
 
 	@ManyToMany
 	@JoinTable
@@ -50,10 +58,6 @@ public class Libro
 	)
 	private List<Categoria> categorias;
 
-	@ManyToOne
-    @JoinColumn(name = "seccion_id")
-    private Seccion seccion;
-
 	public Libro()
 	{
 	}
@@ -62,6 +66,16 @@ public class Libro
 	{
 		this.titulo = titulo;
 		this.anio_pub = anio_pub;
+	}
+
+	public List<LibroEditorial> getLibroEditoriales()
+	{
+		return libroEditoriales;
+	}
+
+	public void setLibroEditoriales(List<LibroEditorial> libroEditoriales)
+	{
+		this.libroEditoriales = libroEditoriales;
 	}
 
 	public int getSeccion_id()

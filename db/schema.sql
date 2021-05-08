@@ -56,12 +56,13 @@ CREATE TABLE papyrus.socio
 
 CREATE TABLE papyrus.prestamo
 (
+    id serial NOT NULL,
     socio_id serial NOT NULL,
     ejemplar_id serial NOT NULL,
     empleado_id serial NOT NULL,
     fecha_inicio date NOT NULL,
     fecha_fin date NOT NULL,
-    PRIMARY KEY (socio_id, ejemplar_id, empleado_id)
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE papyrus.libro_categoria
@@ -95,12 +96,13 @@ CREATE TABLE papyrus.editorial
 
 CREATE TABLE papyrus.libro_editorial
 (
+    id serial NOT NULL,
     libro_id serial NOT NULL,
     editorial_id serial NOT NULL,
     isbn character varying(13) UNIQUE,
     paginas integer NOT NULL,
     fecha_imp date NOT NULL,
-    PRIMARY KEY (libro_id, editorial_id)
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE papyrus.libro_autor
