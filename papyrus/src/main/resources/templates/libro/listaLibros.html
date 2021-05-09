@@ -1,44 +1,48 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layouts/general}"
+  lang="es"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gestión de libros</title>
-</head>
-<body>
-    <div align="center">
-        <h1>Lista de libros</h1>
-        <a href="/libro/form">Añadir libro</a>
-        <br><br>
-        <table border="1" cellpadding="10">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Título</th>
-                    <th>Autor/es</th>
-                    <th>Año de publicación</th>
-                    <th>Categría</th>
-                    <th>Editoriales</th>
-                    <th>Ejemplares disponibles</th>
-                    <th>Sección</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="libro : ${listaLibros}">
-                    <td th:text="${libro.id}"></td>
-                    <td th:text="${libro.titulo}"></td>
-                    <td th:text="${libro.getAutoresStr}"></td>
-                    <td th:text="${libro.anio_pub}"></td>
-                    <td th:text="${libro.getCategoriasStr}"></td>
-                    <td th:text="${libro.getEditorialesStr}"></td>
-                    <td th:text="${libro.getEjemplaresCount}"></td>
-                    <td th:text="${libro.seccion.nombre}"></td>
-                </tr>
-            </tbody>
+  </head>
+  <body>
+    <section layout:fragment="custom-content">
+      <br />
+      <h2>Lista de libros</h2>
+      <div class="table-responsive">
+        <table class="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Título</th>
+              <th>Autor</th>
+              <th>Año de publicación</th>
+              <th>Categoría</th>
+              <th>Editorial</th>
+              <th>Ejemplares disponibles</th>
+              <th>Sección</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="libro : ${listaLibros}">
+              <td th:text="${libro.id}"></td>
+              <td th:text="${libro.titulo}"></td>
+              <td th:text="${libro.getAutoresStr}"></td>
+              <td th:text="${libro.anio_pub}"></td>
+              <td th:text="${libro.getCategoriasStr}"></td>
+              <td th:text="${libro.getEditorialesStr}"></td>
+              <td th:text="${libro.getEjemplaresCount}"></td>
+              <td th:text="${libro.seccion.nombre}"></td>
+            </tr>
+          </tbody>
         </table>
-    </div>
-</body>
+      </div>
+    </section>
+  </body>
 </html>
