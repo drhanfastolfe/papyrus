@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.papyrus.editorial.EditorialService;
 import com.papyrus.libro_editorial.LibroEditorial;
-import com.papyrus.libro_editorial.LibroEditorialService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,9 +17,6 @@ public class LibroService
 
 	@Autowired
 	private EditorialService editorialService;
-
-	@Autowired
-	private LibroEditorialService libroEditorialService;
 	
 	public List<Libro> findAll()
 	{

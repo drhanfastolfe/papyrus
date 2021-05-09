@@ -1,0 +1,49 @@
+gestión de prestamos
+	- crear prestamo
+		- selecciona ejemplar por id
+		- selecciona socio por dni
+		- crea prestamo
+	- lista prestamos
+	- buscar prestamos por id o dni socio
+	- editar prestamos
+		- borrar no cascade
+		- actualizar
+		- finalizar
+gestión de biblioteca
+	- crear libro
+		- con o sin ejemplares
+		- asociar detalles libro
+	- listar libros
+		- con detalle
+			- ejemplares disponibles
+			- seccion
+			- etc
+	- buscar libro por
+		- autor
+		- ejemplar
+		- editorial
+		- categoria
+		- seccion
+		- titulo
+		- isbn
+		- etc	
+	- borrar libro no cascade en prestamos
+	- gestion de autores. categorías, editoriales, secciones, ejemplares  
+gestión de socios
+	- crear socio
+	- listar socios
+	- buscar socio por dni o nombre
+	- editar socio
+		- borrar no cascade
+		- actualizar datos personales
+	- detalle prestamos socio
+		- editar prestamos
+gestión empleados
+	- login como admin o empleado
+		- admin gestiona empleados
+	- crear empleado
+	- listar empleados
+	- buscar empleado
+	- eitar empleado
+	- detalle prestamos
+		- editar prestamos

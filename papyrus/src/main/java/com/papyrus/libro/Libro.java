@@ -162,4 +162,60 @@ public class Libro
 	{
 		this.anio_pub = anio_pub;
 	}
+
+	public String getEditorialesStr()
+	{
+		String editoriales = "";
+
+		for(int i = 0; i < this.libroEditoriales.size(); i++)
+		{
+			editoriales += this.libroEditoriales.get(i).getEditorial().getNombre();
+			
+			if(i != this.libroEditoriales.size() - 1)
+			{
+				editoriales += ", ";
+			}
+		}
+		
+		return editoriales;
+	}
+
+	public String getAutoresStr()
+	{
+		String autores = "";
+
+		for(int i = 0; i < this.getAutores().size(); i++)
+		{
+			autores += this.getAutores().get(i).getNombre();
+			
+			if(i != this.getAutores().size() - 1)
+			{
+				autores += ", ";
+			}
+		}
+		
+		return autores;
+	}
+
+	public String getCategoriasStr()
+	{
+		String categorias = "";
+
+		for(int i = 0; i < this.getCategorias().size(); i++)
+		{
+			categorias += this.getCategorias().get(i).getNombre();
+			
+			if(i != this.getCategorias().size() - 1)
+			{
+				categorias += ", ";
+			}
+		}
+		
+		return categorias;
+	}
+
+	public int getEjemplaresCount()
+	{
+		return this.getEjemplares().size();
+	}
 }

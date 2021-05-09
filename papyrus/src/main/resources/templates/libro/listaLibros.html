@@ -18,20 +18,24 @@
                 <tr>
                     <th>ID</th>
                     <th>Título</th>
-                    <th>Editorial</th>
-                    <th>ISBN</th>
-                    <th>Páginas</th>
-                    <th>Acciones</th>
+                    <th>Autor/es</th>
+                    <th>Año de publicación</th>
+                    <th>Categría</th>
+                    <th>Editoriales</th>
+                    <th>Ejemplares disponibles</th>
+                    <th>Sección</th>
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="libro : ${listaLibros}">
                     <td th:text="${libro.id}"></td>
                     <td th:text="${libro.titulo}"></td>
-                    <td th:text="${libro.editorial}"></td>
-                    <td th:text="${libro.isbn}"></td>
-                    <td th:text="${libro.paginas}"></td>
-                    <td></td>
+                    <td th:text="${libro.getAutoresStr}"></td>
+                    <td th:text="${libro.anio_pub}"></td>
+                    <td th:text="${libro.getCategoriasStr}"></td>
+                    <td th:text="${libro.getEditorialesStr}"></td>
+                    <td th:text="${libro.getEjemplaresCount}"></td>
+                    <td th:text="${libro.seccion.nombre}"></td>
                 </tr>
             </tbody>
         </table>

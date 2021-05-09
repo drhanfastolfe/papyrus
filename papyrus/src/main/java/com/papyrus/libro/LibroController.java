@@ -25,7 +25,7 @@ public class LibroController
 		return "libro/listaLibros";
 	}
 
-	@GetMapping("/form")
+	@GetMapping("/insertar")
 	public String vistaFormLibro(Model model)
 	{
 		Libro libro = new Libro();
@@ -46,6 +46,7 @@ public class LibroController
 	public String prueba(Model model)
 	{
 		List<Libro> listaLibros = service.findByEditorialNombre("Debolsillo");
+
 		model.addAttribute("listaLibros", listaLibros);
 
 		return "libro/prueba";
