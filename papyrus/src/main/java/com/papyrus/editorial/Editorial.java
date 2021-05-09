@@ -6,11 +6,10 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.papyrus.libro_editorial.LibroEditorial;
-
-import org.springframework.data.annotation.Id;
 
 @Entity
 public class Editorial
@@ -18,15 +17,14 @@ public class Editorial
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long nombre;
+    private String nombre;
 
     @OneToMany(mappedBy = "editorial", cascade = CascadeType.ALL)
     private List<LibroEditorial> libroEditoriales;
 
-    public Editorial(Long nombre, List<LibroEditorial> libroEditoriales)
+    public Editorial()
     {
-        this.nombre = nombre;
-        this.libroEditoriales = libroEditoriales;
+        
     }
 
     public Long getId()
@@ -39,12 +37,12 @@ public class Editorial
         this.id = id;
     }
 
-    public Long getNombre()
+    public String getNombre()
     {
         return nombre;
     }
 
-    public void setNombre(Long nombre)
+    public void setNombre(String nombre)
     {
         this.nombre = nombre;
     }

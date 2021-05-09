@@ -23,10 +23,9 @@ public class Autor
     @ManyToMany(mappedBy = "autores")
     private List<Libro> libros;
 
-    public Autor(String nombre, Date fecha_nac)
+    public Autor()
     {
-        this.nombre = nombre;
-        this.fecha_nac = fecha_nac;
+        
     }
 
     public Long getId()

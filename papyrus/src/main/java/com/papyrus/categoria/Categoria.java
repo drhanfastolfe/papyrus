@@ -21,6 +21,11 @@ public class Categoria
     @ManyToMany(mappedBy = "categorias")
     private List<Libro> libros;
     
+    public Categoria()
+    {
+        
+    }
+
     public List<Libro> getLibros()
     {
         return libros;

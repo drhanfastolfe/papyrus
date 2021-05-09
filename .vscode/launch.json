@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-PapyrusMain<papyrus>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.papyrus.PapyrusMain",
+            "projectName": "papyrus",
+            "args": ""
+        }
+    ]
+}

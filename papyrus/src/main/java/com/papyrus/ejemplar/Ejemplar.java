@@ -19,12 +19,12 @@ public class Ejemplar
     private int libro_id;
 
     @ManyToOne
-    @JoinColumn(name = "libro_id")
+    @JoinColumn(name = "libro_id", insertable = false, updatable = false)
     private Libro libro;
     
-    public Ejemplar(String estado)
+    public Ejemplar()
     {
-        this.estado = estado;
+        
     }
 
     public int getLibro_id()

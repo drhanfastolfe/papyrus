@@ -19,7 +19,7 @@ public class LibroController
 	@GetMapping("/lista")
 	public String vistaListaLibros(Model model)
 	{
-		List<Libro> listaLibros = service.listarTodo();
+		List<Libro> listaLibros = service.findAll();
 		model.addAttribute("listaLibros", listaLibros);
 		
 		return "libro/listaLibros";
@@ -37,8 +37,17 @@ public class LibroController
 	@PostMapping("/insertar")
 	public String insertarLibro(Libro libro)
 	{
-		service.insertar(libro);
+		service.add(libro);
 		
 		return "redirect:/libro/lista";
+	}
+
+	@GetMapping("/prueba")
+	public String prueba(Model model)
+	{
+		List<Libro> listaLibros = service.findByEditorialNombre("Debolsillo");
+		model.addAttribute("listaLibros", listaLibros);
+
+		return "libro/prueba";
 	}
 }

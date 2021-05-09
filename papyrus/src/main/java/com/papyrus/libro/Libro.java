@@ -37,7 +37,7 @@ public class Libro
     private List<LibroEditorial> libroEditoriales;
 
 	@ManyToOne
-	@JoinColumn(name = "seccion_id")
+	@JoinColumn(name = "seccion_id", insertable = false, updatable = false)
 	private Seccion seccion;
 
 	@ManyToMany

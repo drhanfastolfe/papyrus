@@ -25,14 +25,18 @@ public class LibroEditorial
     private Date fecha_imp;
 
     @ManyToOne
-    @JoinColumn(name = "libro_id")
+    @JoinColumn(name = "libro_id", insertable = false, updatable = false)
     private Libro libro;
 
     @ManyToOne
-    @JoinColumn(name = "editorial_id")
+    @JoinColumn(name = "editorial_id", insertable = false, updatable = false)
     private Editorial editorial;
 
     //? contructurs
+    public LibroEditorial()
+    {
+        
+    }
 
     public Long getId()
     {
