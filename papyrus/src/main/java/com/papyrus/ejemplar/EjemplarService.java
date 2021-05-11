@@ -2,7 +2,7 @@ package com.papyrus.ejemplar;
 
 import java.util.List;
 
-import com.papyrus.libro.Libro;
+import com.papyrus.detalle.Detalle;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,10 +13,10 @@ public class EjemplarService
     @Autowired
     private EjemplarRepository repo;
 
-    public List<Ejemplar> ejemplaresLibro(Libro libro)
+    public List<Ejemplar> ejemplaresDetalle(Detalle detalle)
     {
-        List<Ejemplar> ejemplares = repo.findByLibro(libro);
+        List<Ejemplar> detalles = repo.findByDetalle(detalle);
         
-        return ejemplares;
+        return detalles;
     }
 }

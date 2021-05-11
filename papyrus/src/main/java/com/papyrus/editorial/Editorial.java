@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.papyrus.libro_editorial.LibroEditorial;
+import com.papyrus.detalle.Detalle;
 
 @Entity
 public class Editorial
@@ -20,7 +20,7 @@ public class Editorial
     private String nombre;
 
     @OneToMany(mappedBy = "editorial", cascade = CascadeType.ALL)
-    private List<LibroEditorial> libroEditoriales;
+    private List<Detalle> detalles;
 
     public Editorial()
     {
@@ -47,13 +47,13 @@ public class Editorial
         this.nombre = nombre;
     }
 
-    public List<LibroEditorial> getLibroEditoriales()
+    public List<Detalle> getDetalles()
     {
-        return libroEditoriales;
+        return detalles;
     }
 
-    public void setLibroEditoriales(List<LibroEditorial> libroEditoriales)
+    public void setDetalles(List<Detalle> detalles)
     {
-        this.libroEditoriales = libroEditoriales;
+        this.detalles = detalles;
     }
 }

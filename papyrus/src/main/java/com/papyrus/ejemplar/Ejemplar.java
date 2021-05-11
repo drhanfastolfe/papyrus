@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.papyrus.libro.Libro;
+import com.papyrus.detalle.Detalle;
 
 @Entity
 public class Ejemplar
@@ -19,8 +19,8 @@ public class Ejemplar
     private int libro_id;
 
     @ManyToOne
-    @JoinColumn(name = "libro_id", insertable = false, updatable = false)
-    private Libro libro;
+    @JoinColumn(name = "detalle_id", insertable = false, updatable = false)
+    private Detalle detalle;
     
     public Ejemplar()
     {
@@ -37,14 +37,14 @@ public class Ejemplar
         this.libro_id = libro_id;
     }
 
-    public Libro getLibro()
+    public Detalle getDetalle()
     {
-        return libro;
+        return detalle;
     }
 
-    public void setLibro(Libro libro)
+    public void setDetalle(Detalle detalle)
     {
-        this.libro = libro;
+        this.detalle = detalle;
     }
 
     public Long getId()

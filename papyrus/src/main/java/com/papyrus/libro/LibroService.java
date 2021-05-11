@@ -3,8 +3,8 @@ package com.papyrus.libro;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.papyrus.detalle.Detalle;
 import com.papyrus.editorial.EditorialService;
-import com.papyrus.libro_editorial.LibroEditorial;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,14 +40,14 @@ public class LibroService
 
 	public List<Libro> findByEditorialNombre(String editorialNombre)
 	{
-		List<LibroEditorial> libroEditoriales;
+		List<Detalle> listaDetalles;
 		List<Libro> libros = new ArrayList<>();
 
-		libroEditoriales = editorialService.findByNombre(editorialNombre).getLibroEditoriales();
+		listaDetalles = editorialService.findByNombre(editorialNombre).getDetalles();
 		
-		for (LibroEditorial libroEditorial : libroEditoriales)
+		for (Detalle detalle : listaDetalles)
 		{
-			libros.add(libroEditorial.getLibro());
+			libros.add(detalle.getLibro());
 		}		
 
 		return libros;

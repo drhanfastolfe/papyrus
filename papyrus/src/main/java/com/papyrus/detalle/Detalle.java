@@ -1,28 +1,36 @@
-package com.papyrus.libro_editorial;
+package com.papyrus.detalle;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.papyrus.editorial.Editorial;
+import com.papyrus.ejemplar.Ejemplar;
 import com.papyrus.libro.Libro;
 
 @Entity
-public class LibroEditorial
+public class Detalle
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long libro_id;
     private Long editorial_id;
+    private int edicion;
     private String isbn;
     private int paginas;
     private Date fecha_imp;
+
+    @OneToMany(mappedBy = "detalle", cascade = CascadeType.ALL)
+    private List<Ejemplar> ejemplares;
 
     @ManyToOne
     @JoinColumn(name = "libro_id", insertable = false, updatable = false)
@@ -33,9 +41,19 @@ public class LibroEditorial
     private Editorial editorial;
 
     //? contructurs
-    public LibroEditorial()
+    public Detalle()
     {
         
+    }
+
+    public List<Ejemplar> getEjemplares()
+    {
+        return ejemplares;
+    }
+
+    public void setEjemplares(List<Ejemplar> ejemplares)
+    {
+        this.ejemplares = ejemplares;
     }
 
     public Long getId()
@@ -66,6 +84,16 @@ public class LibroEditorial
     public void setEditorial_id(Long editorial_id)
     {
         this.editorial_id = editorial_id;
+    }
+    
+    public int getEdicion()
+    {
+        return edicion;
+    }
+
+    public void setEdicion(int edicion)
+    {
+        this.edicion = edicion;
     }
 
     public String getIsbn()

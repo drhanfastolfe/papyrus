@@ -1,6 +1,5 @@
 package com.papyrus.libro;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -16,8 +15,7 @@ import javax.persistence.OneToMany;
 
 import com.papyrus.autor.Autor;
 import com.papyrus.categoria.Categoria;
-import com.papyrus.ejemplar.Ejemplar;
-import com.papyrus.libro_editorial.LibroEditorial;
+import com.papyrus.detalle.Detalle;
 import com.papyrus.seccion.Seccion;
 
 @Entity
@@ -31,10 +29,7 @@ public class Libro
 	private int seccion_id;
 
 	@OneToMany(mappedBy = "libro", cascade = CascadeType.ALL)
-    private List<Ejemplar> ejemplares;
-
-	@OneToMany(mappedBy = "libro", cascade = CascadeType.ALL)
-    private List<LibroEditorial> libroEditoriales;
+    private List<Detalle> detalles;
 
 	@ManyToOne
 	@JoinColumn(name = "seccion_id", insertable = false, updatable = false)
@@ -68,14 +63,14 @@ public class Libro
 		this.anio_pub = anio_pub;
 	}
 
-	public List<LibroEditorial> getLibroEditoriales()
+	public List<Detalle> getDetalles()
 	{
-		return libroEditoriales;
+		return detalles;
 	}
 
-	public void setLibroEditoriales(List<LibroEditorial> libroEditoriales)
+	public void setDetalles(List<Detalle> detalles)
 	{
-		this.libroEditoriales = libroEditoriales;
+		this.detalles = detalles;
 	}
 
 	public int getSeccion_id()
@@ -117,21 +112,6 @@ public class Libro
 	{
 		this.categorias = categorias;
 	}
-	
-
-	public List<Ejemplar> getEjemplares()
-	{
-		if (this.ejemplares == null) 
-		{
-			this.ejemplares = new ArrayList<>();
-		}
-		return ejemplares;
-	}
-
-	public void setEjemplares(List<Ejemplar> ejemplares)
-	{
-		this.ejemplares = ejemplares;
-	}
 
 	public Long getId()
 	{
@@ -167,11 +147,11 @@ public class Libro
 	{
 		String editoriales = "";
 
-		for(int i = 0; i < this.libroEditoriales.size(); i++)
+		for(int i = 0; i < this.detalles.size(); i++)
 		{
-			editoriales += this.libroEditoriales.get(i).getEditorial().getNombre();
+			editoriales += this.detalles.get(i).getEditorial().getNombre();
 			
-			if(i != this.libroEditoriales.size() - 1)
+			if(i != this.detalles.size() - 1)
 			{
 				editoriales += ", ";
 			}
@@ -216,6 +196,13 @@ public class Libro
 
 	public int getEjemplaresCount()
 	{
-		return this.getEjemplares().size();
+		int numEjemplares = 0;
+
+		for (Detalle detalle : this.getDetalles())
+		{
+			numEjemplares += detalle.getEjemplares().size();	
+		}
+
+		return numEjemplares;
 	}
 }
