@@ -15,28 +15,29 @@ INSERT INTO papyrus.libro(titulo, anio_pub, seccion_id)
 			('Historia del tiempo', 1988, 5),
 			('El Hobbit', 1937, 7);
 
-INSERT INTO papyrus.ejemplar(estado, libro_id)
-	VALUES	('bueno', 1),
-			('correcto', 1),
-			('impecable', 1),
-			('bueno', 1),
-			('bueno', 2),
-			('muy bueno', 2),
-			('correcto', 1),
-			('bueno', 3),
-			('regular', 3),
-			('regular', 3);
-
 INSERT INTO papyrus.editorial(nombre)
 	VALUES	('Debolsillo'),
 			('Critica'),
 			('Minotauro');
 
-INSERT INTO papyrus.libro_editorial(libro_id, editorial_id, isbn, paginas, fecha_imp)
-	VALUES	(1, 1, '123-123-123-0', 423, '2016-07-03'),
-			(2, 2, '123-123-123-1', 325, '2001-06-03'),
-			(3, 3, '123-123-123-2', 512, '2014-05-05'),
-			(2, 1, '123-123-123-4', 352, '2003-02-13');
+INSERT INTO papyrus.detalle(libro_id, editorial_id, edicion, isbn, paginas, fecha_imp)
+	VALUES	(1, 1, 1, '123-001-01-01', 423, '2016-07-03'),
+			(1, 1, 2, '123-001-01-02', 435, '2018-05-04'),
+			(2, 2, 1, '123-002-02-01', 325, '2001-06-03'),
+			(3, 3, 1, '123-003-03-01', 512, '2014-05-05'),
+			(2, 1, 1, '123-002-01-01', 352, '2003-02-13');
+
+INSERT INTO papyrus.ejemplar(estado, detalle_id)
+	VALUES	('bueno', 1),
+			('correcto', 3),
+			('impecable', 3),
+			('bueno', 2),
+			('bueno', 2),
+			('muy bueno', 2),
+			('correcto', 1),
+			('bueno', 5),
+			('regular', 3),
+			('regular', 4);
 
 INSERT INTO papyrus.autor(nombre)
 	VALUES	('J.R.R. Tolkien'),

@@ -38,7 +38,7 @@ CREATE TABLE papyrus.ejemplar
 (
     id serial NOT NULL,
     estado character varying(50) NOT NULL,
-    libro_id serial NOT NULL,
+    detalle_id serial NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -94,11 +94,12 @@ CREATE TABLE papyrus.editorial
     PRIMARY KEY (id)
 );
 
-CREATE TABLE papyrus.libro_editorial
+CREATE TABLE papyrus.detalle
 (
     id serial NOT NULL,
     libro_id serial NOT NULL,
     editorial_id serial NOT NULL,
+    edicion integer NOT NULL,
     isbn character varying(13) UNIQUE,
     paginas integer NOT NULL,
     fecha_imp date NOT NULL,
@@ -142,14 +143,14 @@ ALTER TABLE papyrus.libro_categoria
 	NOT VALID;
 
 
-ALTER TABLE papyrus.libro_editorial
+ALTER TABLE papyrus.detalle
     ADD FOREIGN KEY (libro_id)
     REFERENCES papyrus.libro (id)
 	ON DELETE CASCADE
     NOT VALID;
 
 
-ALTER TABLE papyrus.libro_editorial
+ALTER TABLE papyrus.detalle
     ADD FOREIGN KEY (editorial_id)
     REFERENCES papyrus.editorial (id)
 	ON DELETE CASCADE
@@ -171,8 +172,8 @@ ALTER TABLE papyrus.libro_autor
 
 
 ALTER TABLE papyrus.ejemplar
-    ADD FOREIGN KEY (libro_id)
-    REFERENCES papyrus.libro (id)
+    ADD FOREIGN KEY (detalle_id)
+    REFERENCES papyrus.detalle (id)
 	ON DELETE CASCADE
     NOT VALID;
 
