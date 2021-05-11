@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layouts/general}"
+  lang="es"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Insertar libro</title>
+  </head>
+  <body>
+    <section layout:fragment="custom-content">
+      <br />
+      <h2>Insertar libro</h2>
+      <form th:action="@{/libro/insertar}" th:object="${libro}" method="post">
+        <fieldset>
+            <legend>Datos del libro</legend>
+              <div class="form-group">
+                <label class="form-label mt-4">Título</label>
+                <input type="text" class="form-control" th:field="*{titulo}" placeholder="">
+              </div>
+              <div class="form-group">
+                <label class="form-label mt-4">Año de publicación</label>
+                <input type="number" class="form-control" th:field="*{anio_pub}" placeholder="">
+              </div>
+              <div class="form-group">
+                <label class="form-label mt-4">Sección</label>
+                <select class="form-select" th:field="*{seccion_id}">
+                  <option th:value="1">A</option>
+                  <option th:value="2">B</option>
+                  <option th:value="3">C</option>
+                  <option th:value="4">D</option>
+                  <option th:value="5">E</option>
+                  <option th:value="6">F</option>
+                  <option th:value="7">G</option>
+                  <option th:value="8">H</option>
+                  <option th:value="9">I</option>
+                  <option th:value="10">J</option>
+                </select>
+              </div>
+        </fieldset>
+        <button type="submit" class="btn btn-primary">Insertar</button>
+      </form>
+    </section>
+  </body>
+</html>

@@ -31,7 +31,7 @@ public class LibroController
 		Libro libro = new Libro();
 		model.addAttribute("libro", libro);
 
-		return "libro/formLibro";
+		return "libro/insertar";
 	}
 
 	@PostMapping("/insertar")
