@@ -23,17 +23,17 @@ public class LibroService
 		return repo.findAll();
 	}
 	
-	public void add(Libro libro)
+	public void save(Libro libro)
 	{
 		repo.save(libro);
 	}
 	
-	public Libro get(Long id)
+	public Libro findById(Long id)
 	{
 		return repo.findById(id).get();
 	}
 	
-	public void delete(Long id)
+	public void deleteById(Long id)
 	{
 		repo.deleteById(id);
 	}

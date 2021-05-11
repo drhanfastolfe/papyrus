@@ -13,10 +13,30 @@ public class EjemplarService
     @Autowired
     private EjemplarRepository repo;
 
-    public List<Ejemplar> ejemplaresDetalle(Detalle detalle)
+    public List<Ejemplar> findAll()
     {
-        List<Ejemplar> detalles = repo.findByDetalle(detalle);
+        return repo.findAll();
+    }
+    
+    public Ejemplar findById(Long id)
+    {
+        return repo.findById(id).get();    
+    }
+
+    public void save(Ejemplar ejemplar)
+    {
+        repo.save(ejemplar);
+    }
+    
+    public void deleteById(Long id)
+    {
+        repo.deleteById(id);
+    }
+
+    public List<Ejemplar> findByDetalle(Detalle detalle)
+    {
+        List<Ejemplar> listaEjemplares = repo.findByDetalle(detalle);
         
-        return detalles;
+        return listaEjemplares;
     }
 }
