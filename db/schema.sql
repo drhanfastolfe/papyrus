@@ -133,6 +133,7 @@ ALTER TABLE papyrus.libro_categoria
     ADD FOREIGN KEY (libro_id)
     REFERENCES papyrus.libro (id)
     ON DELETE CASCADE
+    ON UPDATE CASCADE
 	NOT VALID;
 
 
@@ -140,6 +141,7 @@ ALTER TABLE papyrus.libro_categoria
     ADD FOREIGN KEY (categoria_id)
     REFERENCES papyrus.categoria (id)
 	ON DELETE CASCADE
+    ON UPDATE CASCADE
 	NOT VALID;
 
 
@@ -161,6 +163,7 @@ ALTER TABLE papyrus.libro_autor
     ADD FOREIGN KEY (libro_id)
     REFERENCES papyrus.libro (id)
 	ON DELETE CASCADE
+    ON UPDATE CASCADE
     NOT VALID;
 
 
@@ -168,6 +171,7 @@ ALTER TABLE papyrus.libro_autor
     ADD FOREIGN KEY (autor_id)
     REFERENCES papyrus.autor (id)
 	ON DELETE CASCADE
+    ON UPDATE CASCADE
     NOT VALID;
 
 

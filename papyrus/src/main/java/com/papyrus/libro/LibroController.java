@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,7 +22,7 @@ public class LibroController
 		List<Libro> listaLibros = libroService.findAll();
 		model.addAttribute("listaLibros", listaLibros);
 		
-		return "libros/libroLista";
+		return "libros/listaLibro";
 	}
 
 	@GetMapping("libros/{id}")
@@ -40,7 +41,7 @@ public class LibroController
 		Libro libro = new Libro();
 		model.addAttribute("libro", libro);
 
-		return "libro/insertarLibro";
+		return "libros/insertarLibro";
 	}
 
 	@PostMapping("libros/insertar")
@@ -48,12 +49,11 @@ public class LibroController
 	{
 		libroService.save(libro);
 		
-		return "redirect:/libros/listaLibro";
+		return "redirect:/libros/lista";
 	}
 
-	
 	@GetMapping("libros/editar/{id}")
-	public String mostrarEditarLibro(Long id, Model model)
+	public String mostrarEditarLibro(@PathVariable("id") Long id, Model model)
 	{
 		Libro libro = libroService.findById(id);
 		model.addAttribute("libro", libro);
@@ -62,19 +62,25 @@ public class LibroController
 	}
 
 	@PostMapping("libros/editar/{id}")
-	public String editarLibro(Long id, Libro libro, Model model)
+	public String editarLibro(@PathVariable("id") Long id, Libro libro, Model model)
 	{
-		libroService.save(libro);
+		Libro libroBd = libroService.findById(id);
+
+		libroBd.setTitulo(libro.getTitulo());
+		libroBd.setAnio_pub(libro.getAnio_pub());
+		libroBd.setSeccion_id(libro.getSeccion_id());
+
+		libroService.save(libroBd);
 		
-		return "/libro/listaLibro";
+		return "redirect:/libros/lista";
 	}	
 
 	@GetMapping("libros/eliminar/{id}")
-	public String eliminarLibroPorId(Long id, Model model)
+	public String eliminarLibroPorId(@PathVariable("id") Long id, Model model)
 	{
 		libroService.deleteById(id);
 
-		return "redirect:/libros/listaLibro";
+		return "redirect:/libros/lista";
 	}
 
 	//* método prueba para listar libros por editorial
@@ -85,6 +91,6 @@ public class LibroController
 
 		model.addAttribute("listaLibros", listaLibros);
 
-		return "libro/prueba";
+		return "libros/prueba";
 	}
 }

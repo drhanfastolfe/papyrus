@@ -149,11 +149,14 @@ public class Libro
 
 		for(int i = 0; i < this.detalles.size(); i++)
 		{
-			editoriales += this.detalles.get(i).getEditorial().getNombre();
-			
-			if(i != this.detalles.size() - 1)
+			if(!editoriales.contains(this.detalles.get(i).getEditorial().getNombre()))
 			{
-				editoriales += ", ";
+				editoriales += this.detalles.get(i).getEditorial().getNombre();
+				
+				if((i != this.detalles.size() - 1) && (!editoriales.contains(this.detalles.get(i + 1).getEditorial().getNombre())))
+				{
+					editoriales += ", ";
+				}
 			}
 		}
 		
