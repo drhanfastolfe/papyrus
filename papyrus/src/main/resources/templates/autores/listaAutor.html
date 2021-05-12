@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layouts/general}" lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gestión de biblioteca</title>
+</head>
+<body>
+  <section layout:fragment="custom-content">
+    <h3 class="mt-4">Lista de autores <a th:href="@{/autores/insertar}" class="btn btn-info btn-sm"><span data-feather="plus-square"></span></a></h3>
+    <div class="table-responsive">
+      <table class="table table-striped table-sm">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Fecha de nacimiento</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="autor : ${listaAutores}">
+            <td th:text="${autor.id}"></td>
+            <td th:text="${autor.nombre}"></td>
+            <td th:text="${autor.fecha_nac}"></td>
+            <td>
+              <a th:href="@{/autores/editar/{id}(id=${autor.id})}" class="btn btn-warning btn-sm"><span data-feather="edit"></span></a>
+              <a th:href="@{/autores/eliminar/{id}(id=${autor.id})}" class="btn btn-danger btn-sm"><span data-feather="trash-2"></span></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</body>
+</html>

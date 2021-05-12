@@ -39,11 +39,11 @@ INSERT INTO papyrus.ejemplar(estado, detalle_id)
 			('regular', 3),
 			('regular', 4);
 
-INSERT INTO papyrus.autor(nombre)
-	VALUES	('J.R.R. Tolkien'),
-			('Stephen Hawking'),
-			('Isaac Asimov'),
-			('Richard Dawkins');
+INSERT INTO papyrus.autor(nombre, fecha_nac)
+	VALUES	('J.R.R. Tolkien', '1892-01-03'),
+			('Stephen Hawking', '1942-01-08'),
+			('Isaac Asimov', '1920-01-02'),
+			('Richard Dawkins', '1941-03-26');
 
 INSERT INTO papyrus.libro_autor(libro_id, autor_id)
 	VALUES	(1, 3),

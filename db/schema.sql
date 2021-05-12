@@ -60,7 +60,7 @@ CREATE TABLE papyrus.prestamo
     socio_id serial NOT NULL,
     ejemplar_id serial NOT NULL,
     empleado_id serial NOT NULL,
-    fecha_inicio date NOT NULL,
+    fecha_inicio date NOT NULL DEFAULT CURRENT_DATE,
     fecha_fin date NOT NULL,
     fecha_fin_real date,
     PRIMARY KEY (id)

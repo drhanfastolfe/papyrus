@@ -1,6 +1,6 @@
 package com.papyrus.autor;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -11,6 +11,8 @@ import javax.persistence.ManyToMany;
 
 import com.papyrus.libro.Libro;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class Autor
 {
@@ -18,7 +20,9 @@ public class Autor
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
-    private Date fecha_nac;
+    
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate fecha_nac;
 
     @ManyToMany(mappedBy = "autores")
     private List<Libro> libros;
@@ -48,12 +52,12 @@ public class Autor
         this.nombre = nombre;
     }
 
-    public Date getFecha_nac()
+    public LocalDate getFecha_nac()
     {
         return fecha_nac;
     }
 
-    public void setFecha_nac(Date fecha_nac)
+    public void setFecha_nac(LocalDate fecha_nac)
     {
         this.fecha_nac = fecha_nac;
     }
