@@ -23,6 +23,7 @@
             <th>Editorial</th>
             <th>Ejemplares disponibles</th>
             <th>Sección</th>
+            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -35,6 +36,11 @@
             <td th:text="${libro.getEditorialesStr}"></td>
             <td th:text="${libro.getEjemplaresCount}"></td>
             <td th:text="${libro.seccion.nombre}"></td>
+            <td>
+              <a th:href="@{/libros/configurar/{id}(id=${libro.id})}" class="btn btn-success btn-sm"><span data-feather="settings"></span></a>
+              <a th:href="@{/libros/editar/{id}(id=${libro.id})}" class="btn btn-warning btn-sm"><span data-feather="edit"></span></a>
+              <a th:href="@{/libros/eliminar/{id}(id=${libro.id})}" class="btn btn-danger btn-sm"><span data-feather="trash-2"></span></a>
+            </td>
           </tr>
         </tbody>
       </table>

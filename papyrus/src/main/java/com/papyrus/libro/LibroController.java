@@ -24,26 +24,16 @@ public class LibroController
 		
 		return "libros/listaLibro";
 	}
-
-	@GetMapping("libros/{id}")
-	public ModelAndView mostrarLibroPorId(Long id)
-	{
-		ModelAndView mav = new ModelAndView("libros/detallesLibro");
-		Libro libro = libroService.findById(id);
-		mav.addObject("libro", libro);
-
-		return mav;
-	}
-
+	
 	@GetMapping("libros/insertar")
 	public String mostrarInsertarLibro(Model model)
 	{
 		Libro libro = new Libro();
 		model.addAttribute("libro", libro);
-
+		
 		return "libros/insertarLibro";
 	}
-
+	
 	@PostMapping("libros/insertar")
 	public String insertarLibro(Libro libro)
 	{
@@ -65,11 +55,11 @@ public class LibroController
 	public String editarLibro(@PathVariable("id") Long id, Libro libro, Model model)
 	{
 		Libro libroBd = libroService.findById(id);
-
+		
 		libroBd.setTitulo(libro.getTitulo());
 		libroBd.setAnio_pub(libro.getAnio_pub());
 		libroBd.setSeccion_id(libro.getSeccion_id());
-
+		
 		libroService.save(libroBd);
 		
 		return "redirect:/libros/lista";
@@ -79,10 +69,20 @@ public class LibroController
 	public String eliminarLibroPorId(@PathVariable("id") Long id, Model model)
 	{
 		libroService.deleteById(id);
-
+		
 		return "redirect:/libros/lista";
 	}
 
+	@GetMapping("libros/configurar/{id}")
+	public ModelAndView mostrarLibroPorId(Long id)
+	{
+		ModelAndView mav = new ModelAndView("libros/configurarLibro");
+		Libro libro = libroService.findById(id);
+		mav.addObject("libro", libro);
+
+		return mav;
+	}
+	
 	//* método prueba para listar libros por editorial
 	@GetMapping("libros/prueba")
 	public String prueba(Model model)

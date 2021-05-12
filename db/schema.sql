@@ -29,7 +29,7 @@ CREATE TABLE papyrus.libro
 (
     id serial NOT NULL,
     titulo character varying(100) NOT NULL,
-    anio_pub integer,
+    anio_pub integer NOT NULL,
     seccion_id serial NOT NULL,
     PRIMARY KEY (id)
 );
@@ -62,6 +62,7 @@ CREATE TABLE papyrus.prestamo
     empleado_id serial NOT NULL,
     fecha_inicio date NOT NULL,
     fecha_fin date NOT NULL,
+    fecha_fin_real date,
     PRIMARY KEY (id)
 );
 
@@ -99,10 +100,10 @@ CREATE TABLE papyrus.detalle
     id serial NOT NULL,
     libro_id serial NOT NULL,
     editorial_id serial NOT NULL,
-    edicion integer NOT NULL,
+    edicion integer,
     isbn character varying(13) UNIQUE,
-    paginas integer NOT NULL,
-    fecha_imp date NOT NULL,
+    paginas integer,
+    fecha_imp date,
     PRIMARY KEY (id)
 );
 
