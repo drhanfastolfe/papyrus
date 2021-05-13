@@ -1,5 +1,6 @@
 package com.papyrus.libro;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -15,7 +16,7 @@ import javax.persistence.OneToMany;
 
 import com.papyrus.autor.Autor;
 import com.papyrus.categoria.Categoria;
-import com.papyrus.detalle.Detalle;
+import com.papyrus.ejemplar.Ejemplar;
 import com.papyrus.seccion.Seccion;
 
 @Entity
@@ -25,11 +26,11 @@ public class Libro
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String titulo;
-	private int anio_pub;
+	private LocalDate fecha_pub;
 	private int seccion_id;
 
 	@OneToMany(mappedBy = "libro", cascade = CascadeType.ALL)
-    private List<Detalle> detalles;
+    private List<Ejemplar> listaEjemplares;
 
 	@ManyToOne
 	@JoinColumn(name = "seccion_id", insertable = false, updatable = false)
@@ -55,22 +56,17 @@ public class Libro
 
 	public Libro()
 	{
+
 	}
 
-	public Libro(String titulo, int anio_pub)
+	public List<Ejemplar> getListaEjemplares()
 	{
-		this.titulo = titulo;
-		this.anio_pub = anio_pub;
+		return listaEjemplares;
 	}
 
-	public List<Detalle> getDetalles()
+	public void setListaEjemplares(List<Ejemplar> listaEjemplares)
 	{
-		return detalles;
-	}
-
-	public void setDetalles(List<Detalle> detalles)
-	{
-		this.detalles = detalles;
+		this.listaEjemplares = listaEjemplares;
 	}
 
 	public int getSeccion_id()
@@ -133,27 +129,27 @@ public class Libro
 		this.titulo = titulo;
 	}
 
-	public int getAnio_pub()
+	public LocalDate getFecha_pub()
 	{
-		return anio_pub;
+		return fecha_pub;
 	}
 
-	public void setAnio_pub(int anio_pub)
+	public void setFecha_pub(LocalDate fecha_pub)
 	{
-		this.anio_pub = anio_pub;
+		this.fecha_pub = fecha_pub;
 	}
 
 	public String getEditorialesStr()
 	{
 		String editoriales = "";
 
-		for(int i = 0; i < this.detalles.size(); i++)
+		for(int i = 0; i < this.listaEjemplares.size(); i++)
 		{
-			if(!editoriales.contains(this.detalles.get(i).getEditorial().getNombre()))
+			if(!editoriales.contains(this.listaEjemplares.get(i).getEditorial().getNombre()))
 			{
-				editoriales += this.detalles.get(i).getEditorial().getNombre();
+				editoriales += this.listaEjemplares.get(i).getEditorial().getNombre();
 				
-				if((i != this.detalles.size() - 1) && (!editoriales.contains(this.detalles.get(i + 1).getEditorial().getNombre())))
+				if((i != this.listaEjemplares.size() - 1) && (!editoriales.contains(this.listaEjemplares.get(i + 1).getEditorial().getNombre())))
 				{
 					editoriales += ", ";
 				}
@@ -199,13 +195,6 @@ public class Libro
 
 	public int getEjemplaresCount()
 	{
-		int numEjemplares = 0;
-
-		for (Detalle detalle : this.getDetalles())
-		{
-			numEjemplares += detalle.getEjemplares().size();	
-		}
-
-		return numEjemplares;
+		return this.getListaEjemplares().size();
 	}
 }

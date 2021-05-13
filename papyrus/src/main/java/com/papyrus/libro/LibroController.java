@@ -57,7 +57,7 @@ public class LibroController
 		Libro libroBd = libroService.findById(id);
 		
 		libroBd.setTitulo(libro.getTitulo());
-		libroBd.setAnio_pub(libro.getAnio_pub());
+		libroBd.setFecha_pub(libro.getFecha_pub());
 		libroBd.setSeccion_id(libro.getSeccion_id());
 		
 		libroService.save(libroBd);
@@ -81,16 +81,5 @@ public class LibroController
 		mav.addObject("libro", libro);
 
 		return mav;
-	}
-	
-	//* método prueba para listar libros por editorial
-	@GetMapping("libros/prueba")
-	public String prueba(Model model)
-	{
-		List<Libro> listaLibros = libroService.findByEditorialNombre("Debolsillo");
-
-		model.addAttribute("listaLibros", listaLibros);
-
-		return "libros/prueba";
 	}
 }

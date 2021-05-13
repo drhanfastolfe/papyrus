@@ -2,8 +2,6 @@ package com.papyrus.ejemplar;
 
 import java.util.List;
 
-import com.papyrus.detalle.Detalle;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,12 +29,5 @@ public class EjemplarService
     public void deleteById(Long id)
     {
         repo.deleteById(id);
-    }
-
-    public List<Ejemplar> findByDetalle(Detalle detalle)
-    {
-        List<Ejemplar> listaEjemplares = repo.findByDetalle(detalle);
-        
-        return listaEjemplares;
     }
 }

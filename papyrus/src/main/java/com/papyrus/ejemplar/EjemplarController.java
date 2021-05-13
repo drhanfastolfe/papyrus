@@ -2,7 +2,6 @@ package com.papyrus.ejemplar;
 
 import java.util.List;
 
-import com.papyrus.detalle.Detalle;
 import com.papyrus.editorial.Editorial;
 import com.papyrus.editorial.EditorialService;
 import com.papyrus.libro.Libro;
@@ -39,12 +38,10 @@ public class EjemplarController
 	public String mostrarInsertarEjemplar(Model model)
 	{
 		Ejemplar ejemplar = new Ejemplar();
-        Detalle detalle = new Detalle();
         List<Libro> listaLibros = libroService.findAll();
         List<Editorial> listaEdtoriales = editorialService.findAll();
         
 		model.addAttribute(ejemplar);
-        model.addAttribute(detalle);
         model.addAttribute(listaLibros);
         model.addAttribute(listaEdtoriales);
 		
