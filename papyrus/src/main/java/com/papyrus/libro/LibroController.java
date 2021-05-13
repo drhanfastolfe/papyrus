@@ -2,6 +2,9 @@ package com.papyrus.libro;
 
 import java.util.List;
 
+import com.papyrus.seccion.Seccion;
+import com.papyrus.seccion.SeccionService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +18,9 @@ public class LibroController
 {
 	@Autowired
 	private LibroService libroService;
+
+	@Autowired
+	private SeccionService seccionService;
 	
 	@GetMapping("libros/lista")
 	public String mostrarListaLibros(Model model)
@@ -29,7 +35,10 @@ public class LibroController
 	public String mostrarInsertarLibro(Model model)
 	{
 		Libro libro = new Libro();
+		List<Seccion> listaSecciones= seccionService.findAll();
+
 		model.addAttribute("libro", libro);
+		model.addAttribute("listaSecciones", listaSecciones);
 		
 		return "libros/insertarLibro";
 	}
@@ -46,7 +55,10 @@ public class LibroController
 	public String mostrarEditarLibro(@PathVariable("id") Long id, Model model)
 	{
 		Libro libro = libroService.findById(id);
+		List<Seccion> listaSecciones= seccionService.findAll();
+
 		model.addAttribute("libro", libro);
+		model.addAttribute("listaSecciones", listaSecciones);
 		
 		return "/libros/editarLibro";
 	}

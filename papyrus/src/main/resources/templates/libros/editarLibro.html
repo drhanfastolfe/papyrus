@@ -19,23 +19,14 @@
                     <input type="text" class="form-control" th:field="*{titulo}" value="*{titulo}" placeholder="" />
                 </div>
                 <div class="form-group">
-                    <label class="form-label mt-4">Año de publicación</label>
-                    <input type="number" class="form-control" th:field="*{anio_pub}" value="*{anio_pub}"
+                    <label class="form-label mt-4">Fecha de publicación</label>
+                    <input type="date" class="form-control" th:field="*{fecha_pub}" value="*{fecha_pub}"
                         placeholder="" />
                 </div>
                 <div class="form-group">
                     <label class="form-label mt-4">Sección</label>
-                    <select class="form-select" th:field="*{seccion_id}" value="*{seccion_id}">
-                        <option th:value="1">A</option>
-                        <option th:value="2">B</option>
-                        <option th:value="3">C</option>
-                        <option th:value="4">D</option>
-                        <option th:value="5">E</option>
-                        <option th:value="6">F</option>
-                        <option th:value="7">G</option>
-                        <option th:value="8">H</option>
-                        <option th:value="9">I</option>
-                        <option th:value="10">J</option>
+                    <select class="form-select" th:field="*{seccion}" value="*{seccion_id}">
+                        <option th:each="seccion : ${listaSecciones}" th:value="${seccion.id}" th:text="${seccion.nombre}"></option>
                     </select>
                 </div>
                 <button type="submit" class="btn btn-primary mt-4">Editar</button>

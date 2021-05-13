@@ -19,6 +19,8 @@ import com.papyrus.categoria.Categoria;
 import com.papyrus.ejemplar.Ejemplar;
 import com.papyrus.seccion.Seccion;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class Libro 
 {
@@ -26,8 +28,10 @@ public class Libro
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String titulo;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate fecha_pub;
-	private int seccion_id;
+	private Integer seccion_id;
 
 	@OneToMany(mappedBy = "libro", cascade = CascadeType.ALL)
     private List<Ejemplar> listaEjemplares;
@@ -69,12 +73,12 @@ public class Libro
 		this.listaEjemplares = listaEjemplares;
 	}
 
-	public int getSeccion_id()
+	public Integer getSeccion_id()
 	{
 		return seccion_id;
 	}
 
-	public void setSeccion_id(int seccion_id)
+	public void setSeccion_id(Integer seccion_id)
 	{
 		this.seccion_id = seccion_id;
 	}

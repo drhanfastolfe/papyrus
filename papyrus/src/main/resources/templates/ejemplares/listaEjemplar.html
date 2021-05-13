@@ -22,20 +22,22 @@
             <th>ISBN</th>
             <th>Páginas</th>
             <th>Estado</th>
-            <th>Fecha de impresión</th>
+            <th>Fecha impresión</th>
+            <th>Fecha inserción</th>
             <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
           <tr th:each="ejemplar : ${listaEjemplares}">
             <td th:text="${ejemplar.id}"></td>
-            <td th:text="${ejemplar.detalle.libro.titulo}"></td>
-            <td th:text="${ejemplar.detalle.editorial.nombre}"></td>
-            <td th:text="${ejemplar.detalle.edicion}"></td>
-            <td th:text="${ejemplar.detalle.isbn}"></td>
-            <td th:text="${ejemplar.detalle.paginas}"></td>
+            <td th:text="${ejemplar.libro.titulo}"></td>
+            <td th:text="${ejemplar.editorial.nombre}"></td>
+            <td th:text="${ejemplar.edicion}"></td>
+            <td th:text="${ejemplar.isbn}"></td>
+            <td th:text="${ejemplar.paginas}"></td>
             <td th:text="${ejemplar.estado}"></td>
-            <td th:text="${ejemplar.detalle.fecha_imp}"></td>
+            <td th:text="${ejemplar.fecha_imp}"></td>
+            <td th:text="${ejemplar.fecha_ins}"></td>
             <td>
               <a th:href="@{/ejemplares/editar/{id}(id=${ejemplar.id})}" class="btn btn-warning btn-sm"><span data-feather="edit"></span></a>
               <a th:href="@{/ejemplares/eliminar/{id}(id=${ejemplar.id})}" class="btn btn-danger btn-sm"><span data-feather="trash-2"></span></a>

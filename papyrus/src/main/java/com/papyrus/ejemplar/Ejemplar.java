@@ -1,6 +1,7 @@
 package com.papyrus.ejemplar;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +12,8 @@ import javax.persistence.ManyToOne;
 
 import com.papyrus.editorial.Editorial;
 import com.papyrus.libro.Libro;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Ejemplar
@@ -24,8 +27,12 @@ public class Ejemplar
     private String isbn;
     private int paginas;
     private String estado;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate fecha_imp;
-    private LocalDate fecha_ins;
+
+    //? @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    private LocalDateTime fecha_ins = LocalDateTime.now();
 
     //todo
     // @OneToMany(mappedBy = "ejemplar")
@@ -124,12 +131,12 @@ public class Ejemplar
         this.fecha_imp = fecha_imp;
     }
 
-    public LocalDate getFecha_ins()
+    public LocalDateTime getFecha_ins()
     {
         return fecha_ins;
     }
 
-    public void setFecha_ins(LocalDate fecha_ins)
+    public void setFecha_ins(LocalDateTime fecha_ins)
     {
         this.fecha_ins = fecha_ins;
     }
@@ -153,6 +160,4 @@ public class Ejemplar
     {
         this.editorial = editorial;
     }
-
-    
 }
