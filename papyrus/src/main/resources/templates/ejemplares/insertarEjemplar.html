@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/general}" lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestión de biblioteca</title>
+</head>
+
+<body>
+    <section layout:fragment="custom-content">
+        <h3 class="mt-4">Insertar ejemplar</h3>
+        <form th:action="@{/ejemplares/insertar}" th:object="${ejemplar}" method="post">
+            <fieldset>
+                <div class="form-group">
+                    <label class="form-label mt-4">Selecciona un libro o
+                        <a th:href="@{/libros/insertar}" class="btn btn-info btn-sm">inserta nuevo<span
+                                data-feather="plus-square"></span></a></label>
+                    <select class="form-select">
+                        <option th:each="libro : ${listaLibros}" th:value="${libro.id}"
+                            th:text="${libro.titulo}"></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label mt-4">Selecciona una editorial o
+                        <a th:href="@{/editoriales/insertar}" class="btn btn-info btn-sm">inserta nuevo<span
+                                data-feather="plus-square"></span></a></label>
+                    <select class="form-select">
+                        <option th:each="editorial : ${listaEditoriales}" th:value="${editorial.id}"
+                            th:text="${editorial.nombre}"></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label mt-4">Edición</label>
+                    <input type="number" class="form-control" th:field="*{nombre}" placeholder="" />
+                </div>
+                <button type="submit" class="btn btn-primary mt-4">Insertar</button>
+            </fieldset>
+        </form>
+    </section>
+</body>
+
+</html>
