@@ -83,7 +83,6 @@ public class EjemplarController
         ejemplarBd.setPaginas(ejemplar.getPaginas());
         ejemplarBd.setEstado(ejemplar.getEstado());
         ejemplarBd.setFecha_imp(ejemplar.getFecha_imp());
-        ejemplarBd.setFecha_ins(ejemplar.getFecha_ins());
 
 		ejemplarService.save(ejemplarBd);
 		

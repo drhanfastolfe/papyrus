@@ -47,7 +47,7 @@ public class Libro
 		joinColumns = @JoinColumn(name = "libro_id"),
 		inverseJoinColumns = @JoinColumn(name = "autor_id")
 	)
-	private List<Autor> autores;
+	private List<Autor> listaAutores;
 
 	@ManyToMany
 	@JoinTable
@@ -56,11 +56,11 @@ public class Libro
 		joinColumns = @JoinColumn(name = "libro_id"),
 		inverseJoinColumns = @JoinColumn(name = "categoria_id")
 	)
-	private List<Categoria> categorias;
+	private List<Categoria> listaCategorias;
 
 	public Libro()
 	{
-
+		
 	}
 
 	public List<Ejemplar> getListaEjemplares()
@@ -93,24 +93,24 @@ public class Libro
 		this.seccion = seccion;
 	}
 
-	public List<Autor> getAutores()
+	public List<Autor> getListaAutores()
 	{
-		return autores;
+		return listaAutores;
 	}
 
-	public void setAutores(List<Autor> autores)
+	public void setListaAutores(List<Autor> listaAutores)
 	{
-		this.autores = autores;
+		this.listaAutores = listaAutores;
 	}
 
-	public List<Categoria> getCategorias()
+	public List<Categoria> getListaCategorias()
 	{
-		return categorias;
+		return listaCategorias;
 	}
 
-	public void setCategorias(List<Categoria> categorias)
+	public void setListaCategorias(List<Categoria> listaCategorias)
 	{
-		this.categorias = categorias;
+		this.listaCategorias = listaCategorias;
 	}
 
 	public Long getId()
@@ -167,11 +167,11 @@ public class Libro
 	{
 		String autores = "";
 
-		for(int i = 0; i < this.getAutores().size(); i++)
+		for(int i = 0; i < this.getListaAutores().size(); i++)
 		{
-			autores += this.getAutores().get(i).getNombre();
+			autores += this.getListaAutores().get(i).getNombre();
 			
-			if(i != this.getAutores().size() - 1)
+			if(i != this.getListaAutores().size() - 1)
 			{
 				autores += ", ";
 			}
@@ -184,11 +184,11 @@ public class Libro
 	{
 		String categorias = "";
 
-		for(int i = 0; i < this.getCategorias().size(); i++)
+		for(int i = 0; i < this.getListaCategorias().size(); i++)
 		{
-			categorias += this.getCategorias().get(i).getNombre();
+			categorias += this.getListaCategorias().get(i).getNombre();
 			
-			if(i != this.getCategorias().size() - 1)
+			if(i != this.getListaCategorias().size() - 1)
 			{
 				categorias += ", ";
 			}

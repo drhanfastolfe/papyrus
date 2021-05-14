@@ -24,7 +24,7 @@ public class Autor
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate fecha_nac;
 
-    @ManyToMany(mappedBy = "autores")
+    @ManyToMany(mappedBy = "listaAutores")
     private List<Libro> libros;
 
     public Autor()

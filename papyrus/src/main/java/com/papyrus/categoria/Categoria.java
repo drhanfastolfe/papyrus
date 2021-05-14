@@ -18,7 +18,7 @@ public class Categoria
     private Long id;
     private String nombre;
 
-    @ManyToMany(mappedBy = "categorias")
+    @ManyToMany(mappedBy = "listaCategorias")
     private List<Libro> libros;
     
     public Categoria()

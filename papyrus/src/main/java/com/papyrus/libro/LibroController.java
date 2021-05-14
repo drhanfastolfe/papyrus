@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class LibroController
@@ -35,7 +34,7 @@ public class LibroController
 	public String mostrarInsertarLibro(Model model)
 	{
 		Libro libro = new Libro();
-		List<Seccion> listaSecciones= seccionService.findAll();
+		List<Seccion> listaSecciones = seccionService.findAll();
 
 		model.addAttribute("libro", libro);
 		model.addAttribute("listaSecciones", listaSecciones);
@@ -83,15 +82,5 @@ public class LibroController
 		libroService.deleteById(id);
 		
 		return "redirect:/libros/lista";
-	}
-
-	@GetMapping("libros/configurar/{id}")
-	public ModelAndView mostrarLibroPorId(Long id)
-	{
-		ModelAndView mav = new ModelAndView("libros/configurarLibro");
-		Libro libro = libroService.findById(id);
-		mav.addObject("libro", libro);
-
-		return mav;
 	}
 }

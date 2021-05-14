@@ -23,7 +23,7 @@
                 </div>
                 <div class="form-group">
                     <label class="form-label mt-4">Selecciona una editorial o
-                        <a th:href="@{/editoriales/insertar}" class="btn btn-info btn-sm">inserta una nuevo</a></label>
+                        <a th:href="@{/editoriales/insertar}" class="btn btn-info btn-sm">inserta una nueva</a></label>
                     <select class="form-select" th:field="*{editorial_id}">
                         <option th:each="editorial : ${listaEditoriales}" th:value="${editorial.id}" th:text="${editorial.nombre}"></option>
                     </select>

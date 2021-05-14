@@ -11,7 +11,7 @@
 
 <body>
     <section layout:fragment="custom-content">
-        <h3 class="mt-4">Insertar ejemplar</h3>
+        <h3 class="mt-4">Editar ejemplar</h3>
         <form th:action="@{/ejemplares/editar/{id}(id=${ejemplar.id})}" th:object="${ejemplar}" method="post">
             <fieldset>
                 <div class="form-group">
@@ -54,7 +54,7 @@
                     <label class="form-label mt-4">Fecha de impresión</label>
                     <input type="date" class="form-control" th:field="*{fecha_imp}" placeholder="" />
                 </div>
-                <button type="submit" class="btn btn-primary mt-4">Insertar</button>
+                <button type="submit" class="btn btn-primary mt-4">Editar</button>
             </fieldset>
         </form>
     </section>
