@@ -17,10 +17,11 @@
           <tr>
             <th>ID</th>
             <th>Título</th>
-            <th>Autor</th>
+            <th>Autor/es</th>
             <th>Fecha publicación</th>
-            <th>Categoría</th>
-            <th>Editorial</th>
+            <th>Categoría/s</th>
+            <th>Editorial/es</th>
+            <th>Ejemplares totales</th>
             <th>Ejemplares disponibles</th>
             <th>Sección</th>
             <th>Acciones</th>
@@ -34,6 +35,7 @@
             <td th:text="${libro.fecha_pub}"></td>
             <td th:text="${libro.getCategoriasStr}"></td>
             <td th:text="${libro.getEditorialesStr}"></td>
+            <td th:text="${libro.getEjemplaresCount}"></td>
             <td th:text="${libro.getEjemplaresCount}"></td>
             <td th:text="${libro.seccion.nombre}"></td>
             <td>

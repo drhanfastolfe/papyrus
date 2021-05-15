@@ -2,6 +2,10 @@ package com.papyrus.libro;
 
 import java.util.List;
 
+import com.papyrus.autor.Autor;
+import com.papyrus.autor.AutorService;
+import com.papyrus.categoria.Categoria;
+import com.papyrus.categoria.CategoriaService;
 import com.papyrus.seccion.Seccion;
 import com.papyrus.seccion.SeccionService;
 
@@ -20,6 +24,12 @@ public class LibroController
 
 	@Autowired
 	private SeccionService seccionService;
+
+	@Autowired
+	private AutorService autorService;
+
+	@Autowired
+	private CategoriaService categoriaService;
 	
 	@GetMapping("libros/lista")
 	public String mostrarListaLibros(Model model)
@@ -35,9 +45,13 @@ public class LibroController
 	{
 		Libro libro = new Libro();
 		List<Seccion> listaSecciones = seccionService.findAll();
+		List<Autor> listaAutoresBd = autorService.findAll();
+		List<Categoria> listaCategoriasBd = categoriaService.findAll();
 
 		model.addAttribute("libro", libro);
 		model.addAttribute("listaSecciones", listaSecciones);
+		model.addAttribute("listaAutoresBd", listaAutoresBd);
+		model.addAttribute("listaCategoriasBd", listaCategoriasBd);
 		
 		return "libros/insertarLibro";
 	}
@@ -55,9 +69,13 @@ public class LibroController
 	{
 		Libro libro = libroService.findById(id);
 		List<Seccion> listaSecciones= seccionService.findAll();
+		List<Autor> listaAutoresBd = autorService.findAll();
+		List<Categoria> listaCategoriasBd = categoriaService.findAll();
 
 		model.addAttribute("libro", libro);
 		model.addAttribute("listaSecciones", listaSecciones);
+		model.addAttribute("listaAutoresBd", listaAutoresBd);
+		model.addAttribute("listaCategoriasBd", listaCategoriasBd);
 		
 		return "/libros/editarLibro";
 	}
@@ -70,6 +88,8 @@ public class LibroController
 		libroBd.setTitulo(libro.getTitulo());
 		libroBd.setFecha_pub(libro.getFecha_pub());
 		libroBd.setSeccion_id(libro.getSeccion_id());
+		libroBd.setListaAutores(libro.getListaAutores());
+		libroBd.setListaCategorias(libro.getListaCategorias());
 		
 		libroService.save(libroBd);
 		

@@ -15,6 +15,23 @@
             <fieldset>
                 <legend class="mt-4">Editar libro</legend>
                 <div class="form-group">
+                    <label class="form-label mt-4">Selecciona autor/es o
+                        <a th:href="@{/auotres/insertar}" class="btn btn-info btn-sm">inserta uno nuevo</a></label>
+                    <select class="form-select" multiple="" th:field="*{listaAutores}">
+                        <option th:each="autor : ${listaAutoresBd}" th:value="${autor.id}" th:text="${autor.nombre}">
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label mt-4">Selecciona categoría/s o
+                        <a th:href="@{/categorias/insertar}" class="btn btn-info btn-sm">inserta una nueva</a></label>
+                    <select class="form-select" multiple="" th:field="*{listaCategorias}">
+                        <option th:each="categoria : ${listaCategoriasBd}" th:value="${categoria.id}"
+                            th:text="${categoria.nombre}">
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <label class="form-label mt-4">Título</label>
                     <input type="text" class="form-control" th:field="*{titulo}" value="*{titulo}" placeholder="" />
                 </div>
@@ -25,8 +42,9 @@
                 </div>
                 <div class="form-group">
                     <label class="form-label mt-4">Sección</label>
-                    <select class="form-select" th:field="*{seccion}" value="*{seccion_id}">
-                        <option th:each="seccion : ${listaSecciones}" th:value="${seccion.id}" th:text="${seccion.nombre}"></option>
+                    <select class="form-select" th:field="*{seccion_id}" value="*{seccion_id}">
+                        <option th:each="seccion : ${listaSecciones}" th:value="${seccion.id}"
+                            th:text="${seccion.nombre}"></option>
                     </select>
                 </div>
                 <button type="submit" class="btn btn-primary mt-4">Editar</button>

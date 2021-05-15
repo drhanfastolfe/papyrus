@@ -1,17 +1,34 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
   layout:decorate="~{layouts/general}" lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Insertar libro</title>
 </head>
+
 <body>
   <section layout:fragment="custom-content">
     <h3 class="mt-4">Insertar libro</h3>
     <form th:action="@{/libros/insertar}" th:object="${libro}" method="post">
       <fieldset>
+        <div class="form-group">
+          <label class="form-label mt-4">Selecciona autor/es o
+            <a th:href="@{/auotres/insertar}" class="btn btn-info btn-sm">inserta uno nuevo</a></label>
+          <select class="form-select" multiple="" th:field="*{listaAutores}">
+            <option th:each="autor : ${listaAutoresBd}" th:value="${autor.id}" th:text="${autor.nombre}"></option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label mt-4">Selecciona categoría/s o
+            <a th:href="@{/categorias/insertar}" class="btn btn-info btn-sm">inserta una nueva</a></label>
+          <select class="form-select" multiple="" th:field="*{listaCategorias}">
+            <option th:each="categoria : ${listaCategoriasBd}" th:value="${categoria.id}" th:text="${categoria.nombre}">
+            </option>
+          </select>
+        </div>
         <div class="form-group">
           <label class="form-label mt-4">Título</label>
           <input type="text" class="form-control" th:field="*{titulo}" placeholder="" />
@@ -31,4 +48,5 @@
     </form>
   </section>
 </body>
+
 </html>
