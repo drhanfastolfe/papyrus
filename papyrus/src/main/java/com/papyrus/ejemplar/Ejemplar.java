@@ -2,6 +2,7 @@ package com.papyrus.ejemplar;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,9 +10,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.papyrus.editorial.Editorial;
 import com.papyrus.libro.Libro;
+import com.papyrus.prestamo.Prestamo;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -34,9 +37,8 @@ public class Ejemplar
     //? @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime fecha_ins = LocalDateTime.now();
 
-    //todo
-    // @OneToMany(mappedBy = "ejemplar")
-    // private List<Prestamo> prestamo;
+    @OneToMany(mappedBy = "ejemplar")
+    private List<Prestamo> prestamo;
 
     @ManyToOne
     @JoinColumn(name = "libro_id", insertable = false, updatable = false)
