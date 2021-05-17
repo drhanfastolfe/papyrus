@@ -79,21 +79,6 @@ CREATE TABLE papyrus.libro_categoria
     PRIMARY KEY (libro_id, categoria_id)
 );
 
-CREATE TABLE papyrus.empleado
-(
-    id serial NOT NULL,
-    dni character varying(9) NOT NULL UNIQUE,
-    nombre character varying(50) NOT NULL,
-    apellidos character varying(100) NOT NULL,
-    telefono character varying(9) NOT NULL UNIQUE,
-    email character varying(100) NOT NULL UNIQUE,
-    fecha_nac date NOT NULL,
-    usuario character varying(50) NOT NULL UNIQUE,
-    contrasenia character varying(20) NOT NULL,
-    admin boolean NOT NULL DEFAULT 'false',
-    PRIMARY KEY (id)
-);
-
 CREATE TABLE papyrus.editorial
 (
     id serial NOT NULL,
@@ -107,6 +92,46 @@ CREATE TABLE papyrus.libro_autor
     autor_id serial NOT NULL,
     PRIMARY KEY (libro_id, autor_id)
 );
+
+CREATE TABLE papyrus.empleado
+(
+    id serial NOT NULL,
+    dni character varying(9) NOT NULL UNIQUE,
+    nombre character varying(50) NOT NULL,
+    apellidos character varying(100) NOT NULL,
+    telefono character varying(9) NOT NULL UNIQUE,
+    email character varying(100) NOT NULL UNIQUE,
+    fecha_nac date NOT NULL,
+    usuario character varying(50) NOT NULL UNIQUE,
+    contrasenia character varying(20) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE papyrus.rol
+(
+    id serial NULL,
+    rol character varying(50) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE papyrus.empleado_rol
+(
+    empleado_id serial NULL,
+    rol_id serial NOT NULL,
+    PRIMARY KEY (empleado_id, rol_id)
+);
+
+ALTER TABLE papyrus.empleado_rol
+    ADD FOREIGN KEY (empleado_id)
+    REFERENCES papyrus.empleado (id)
+	ON DELETE CASCADE
+    NOT VALID;
+
+ALTER TABLE papyrus.empleado_rol
+    ADD FOREIGN KEY (rol_id)
+    REFERENCES papyrus.rol (id)
+	ON DELETE CASCADE
+    NOT VALID;
 
 ALTER TABLE papyrus.prestamo
     ADD FOREIGN KEY (socio_id)

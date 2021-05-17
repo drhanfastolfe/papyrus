@@ -2,14 +2,19 @@ package com.papyrus.empleado;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import com.papyrus.prestamo.Prestamo;
+import com.papyrus.rol.Rol;
 
 @Entity
 public class Empleado
@@ -25,13 +30,64 @@ public class Empleado
     private LocalDate fecha_nac;
     private String usuario;
     private String contrasenia;
-    private boolean admin = false;
 
     @OneToMany(mappedBy = "empleado")
     private List<Prestamo> listaPrestamos;
 
+    @ManyToMany
+	@JoinTable
+	(
+		name = "empleado_rol",
+		joinColumns = @JoinColumn(name = "empleado_id"),
+		inverseJoinColumns = @JoinColumn(name = "rol_id")
+	)
+	private Set<Rol> setRoles;
+
     public Empleado()
     {
+    }
+
+    public Empleado(String usuario, String contrasenia, List<Rol> listaRoles)
+    {
+
+    }
+
+    public int hashCode()
+    {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj)
+    {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Empleado other = (Empleado) obj;
+		if (id == null)
+        {
+            if (other.id != null)
+                return false;
+		}
+        else if (!id.equals(other.id))
+            return false;
+		return true;
+	}
+
+    public Set<Rol> getSetRoles()
+    {
+        return setRoles;
+    }
+
+    public void setSetRoles(Set<Rol> setRoles)
+    {
+        this.setRoles = setRoles;
     }
 
     public Long getId()
@@ -122,16 +178,6 @@ public class Empleado
     public void setContrasenia(String contrasenia)
     {
         this.contrasenia = contrasenia;
-    }
-
-    public boolean isAdmin()
-    {
-        return admin;
-    }
-
-    public void setAdmin(boolean admin)
-    {
-        this.admin = admin;
     }
 
     public List<Prestamo> getListaPrestamos()
