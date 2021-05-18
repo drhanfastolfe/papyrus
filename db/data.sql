@@ -57,3 +57,18 @@ INSERT INTO papyrus.libro_categoria(libro_id, categoria_id)
 			(1, 5),
 			(3, 3),
 			(2, 2);
+
+INSERT INTO papyrus.empleado(dni, nombre, apellidos, telefono, email, fecha_nac, usuario, contrasenia)
+	VALUES	('X11111111', 'Hamza', 'Mohammad', '601030106', 'hamzamohammad@gmail.com', '1995-04-23', 'admin', '$2a$04$WFK7lmh7XvOnXdjYC13o0.KIsI64g3KVEK3Au5PBAwDu9YLRak9Uu'),
+			('22222222A', 'Antonio', 'Nuñez Calero', '612549315', 'antonionuñezcalero@gmail.com', '1995-04-19', 'antonionuñez95', '$2a$04$WFK7lmh7XvOnXdjYC13o0.KIsI64g3KVEK3Au5PBAwDu9YLRak9Uu'),
+			('33333333B', 'Razvan', 'Stefan Raspopescu', '621564853', 'razvanstefan@gmail.com', '1991-08-02', 'razvanstefan91', '$2a$04$WFK7lmh7XvOnXdjYC13o0.KIsI64g3KVEK3Au5PBAwDu9YLRak9Uu');
+
+INSERT INTO papyrus.rol(rol)
+	VALUES	('ADMIN'),
+			('USER');
+
+INSERT INTO papyrus.empleado_rol(empleado_id, rol_id)
+	VALUES	(1, 1),
+			(1, 2),
+			(2, 2),
+			(3, 2);

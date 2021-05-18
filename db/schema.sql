@@ -103,20 +103,20 @@ CREATE TABLE papyrus.empleado
     email character varying(100) NOT NULL UNIQUE,
     fecha_nac date NOT NULL,
     usuario character varying(50) NOT NULL UNIQUE,
-    contrasenia character varying(20) NOT NULL,
+    contrasenia character varying(150) NOT NULL,
     PRIMARY KEY (id)
 );
 
 CREATE TABLE papyrus.rol
 (
-    id serial NULL,
+    id serial NOT NULL,
     rol character varying(50) NOT NULL,
     PRIMARY KEY (id)
 );
 
 CREATE TABLE papyrus.empleado_rol
 (
-    empleado_id serial NULL,
+    empleado_id serial NOT NULL,
     rol_id serial NOT NULL,
     PRIMARY KEY (empleado_id, rol_id)
 );

@@ -9,12 +9,12 @@ public class MainController
     @GetMapping("/")
     public String index()
     {
-        return "redirect:/login";
+        return "redirect:/libros/lista";
     }
 
-    @GetMapping("/login")
-    public String login()
-    {
-        return "login";
-    }
+    // @GetMapping("/login")
+    // public String login()
+    // {
+    //     return "login";
+    // }
 }
