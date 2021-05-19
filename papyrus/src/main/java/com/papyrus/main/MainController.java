@@ -12,9 +12,9 @@ public class MainController
         return "redirect:/libros/lista";
     }
 
-    // @GetMapping("/login")
-    // public String login()
-    // {
-    //     return "login";
-    // }
+    @GetMapping("/login")
+    public String login()
+    {
+        return "login";
+    }
 }

@@ -60,9 +60,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
                         "/socios/**").hasAnyAuthority("ADMIN", "USER")
             .anyRequest().authenticated()
             .and()
-            .formLogin().permitAll().defaultSuccessUrl("/libros/listaLibro")
+            .formLogin().loginPage("/login").permitAll().defaultSuccessUrl("/libros/listaLibro").failureUrl("/login?error=true")
             .and()
-            .logout().permitAll()
+            .logout().logoutSuccessUrl("/login?logout").permitAll()
             .and()
             .exceptionHandling().accessDeniedPage("/403")
             ;

@@ -2,57 +2,48 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-  <meta name="generator" content="Hugo 0.83.1">
-  <title>Iniciar sesión</title>
-  
-  <!-- Bootstrap core CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous" />
-  
-  <style>
-    .bd-placeholder-img {
-      font-size: 1.125rem;
-      text-anchor: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      user-select: none;
-    }
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login personalizado básico</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 
-    @media (min-width: 768px) {
-      .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-      }
-    }
-  </style>
-  <link th:href="@{/css/login.css}" rel="stylesheet" />
+    <style>
+
+    </style>
 </head>
 
-<body class="text-center">
-  <main class="form-signin">
-    <form>
-      <h1 class="h3 mb-4 fw-normal">Por favor, incia sesión</h1>
+<body>
+    <div class="container text-center">
+        <div class="row justify-content-center">
+            <div class="col-3 m-5 rounded shadow-lg">
+                <form class="" th:action="@{/login}" method="POST">
+                    <h3 class="mt-4">Por favor, incia sesión</h3>
+                    <div class="form-group mt-4">
+                        <label class="form-label">Usuario</label>
+                        <input class="form-control" type="text" name="username">
+                    </div>
+                    <div class="form-group mt-4">
+                        <label class="form-label">Contraseña</label>
+                        <input class="form-control" type="password" name="password">
+                    </div>
+                    <input class="btn btn-primary mt-4 mb-4" type="submit" value="Iniciar sesión">
+                </form>
+                <div th:if="${param.error}" class="alert alert-danger" role="alert">
+                    Usuario o contraseña incorrecto
+                </div>
+                <div th:if="${param.logout}" class="alert alert-success" role="alert">
+                    Has cerrado sesión con éxtio
+                </div>
 
-      <div class="form-floating">
-        <input type="text" class="form-control" id="floatingInput" name="usuario" placeholder="nombreapellidoxx">
-        <label for="floatingInput">Usuario</label>
-      </div>
-      <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" name="contrasenia" placeholder="Contraseña">
-        <label for="floatingPassword">Contraseña</label>
-      </div>
-      <button class="w-100 btn btn-lg btn-primary" type="submit">Iniciar sesión</button>
-    </form>
-  </main>
-  <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
-    integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
-    crossorigin="anonymous"></script>º
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
