@@ -6,14 +6,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Editar libro</title>
+    <title>Gestión de biblioteca</title>
 </head>
 
 <body>
     <section layout:fragment="custom-content">
         <form th:action="@{/libros/editar/{id}(id=${libro.id})}" th:object="${libro}" method="post">
+            <h3 class="mt-4">Editar libro</h3>
             <fieldset>
-                <legend class="mt-4">Editar libro</legend>
                 <div class="form-group">
                     <label class="form-label mt-4">Selecciona autor/es o
                         <a th:href="@{/auotres/insertar}" class="btn btn-info btn-sm">inserta uno nuevo</a></label>

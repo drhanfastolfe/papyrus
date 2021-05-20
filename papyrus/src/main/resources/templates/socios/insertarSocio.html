@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layouts/general}" lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gestión de socios</title>
+</head>
+
+<body>
+  <section layout:fragment="custom-content">
+    <h3 class="mt-4">Insertar socio</h3>
+    <form th:action="@{/socios/insertar}" th:object="${socio}" method="post">
+      <fieldset>
+        <div class="form-group">
+          <label class="form-label mt-4">DNI/NIE</label>
+          <input type="text" class="form-control" th:field="*{dni}" placeholder="88888888A" />
+        </div>
+        <div class="form-group">
+          <label class="form-label mt-4">Nombre</label>
+          <input type="text" class="form-control" th:field="*{nombre}" placeholder="" />
+        </div>
+        <div class="form-group">
+          <label class="form-label mt-4">Apellidos</label>
+          <input type="text" class="form-control" th:field="*{apellidos}" placeholder="" />
+        </div>
+        <div class="form-group">
+          <label class="form-label mt-4">Teléfono</label>
+          <input type="text" class="form-control" th:field="*{telefono}" placeholder="" />
+        </div>
+        <div class="form-group">
+          <label class="form-label mt-4">Email</label>
+          <input type="email" class="form-control" th:field="*{email}" placeholder="" />
+        </div>
+        <div class="form-group">
+          <label class="form-label mt-4">Fecha de nacimiento</label>
+          <input type="date" class="form-control" th:field="*{fecha_nac}" placeholder="" />
+        </div>
+        <button type="submit" class="btn btn-primary mt-4">Insertar</button>
+      </fieldset>
+    </form>
+  </section>
+</body>
+
+</html>

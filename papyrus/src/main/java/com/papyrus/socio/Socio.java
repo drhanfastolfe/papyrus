@@ -11,6 +11,8 @@ import javax.persistence.OneToMany;
 
 import com.papyrus.prestamo.Prestamo;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class Socio
 {
@@ -22,6 +24,8 @@ public class Socio
     private String apellidos;
     private String telefono;
     private String email;
+    
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate fecha_nac;
 
     @OneToMany(mappedBy = "socio")
@@ -111,5 +115,11 @@ public class Socio
         this.listaPrestamos = listaPrestamos;
     }
     
+    public String getNombreCompleto()
+    {
+        String nombreCompleto = this.apellidos + ", " + this.nombre;
+
+        return nombreCompleto;
+    }
     
 }
