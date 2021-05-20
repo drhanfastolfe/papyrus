@@ -72,3 +72,19 @@ INSERT INTO papyrus.empleado_rol(empleado_id, rol_id)
 			(1, 2),
 			(2, 2),
 			(3, 2);
+
+INSERT INTO papyrus.socio(dni, nombre, apellidos, telefono, email, fecha_nac)
+	VALUES	('44444444C', 'Estela', 'Morgado Guerrero', '621452546', 'estelamorgado@gmail.com', '1999-04-09'),
+			('55555555D', 'Mario', 'Acuña Morado', '685492459', 'marioacuña@gmail.com', '1982-11-25'),
+			('66666666E', 'Pablo', 'García Moreno', '698546548', 'pablogarcia@gmail.com', '1993-07-14');
+
+INSERT INTO papyrus.prestamo(socio_id, ejemplar_id, empleado_id, fecha_inicio, fecha_fin, fecha_fin_real)
+	VALUES	(1, 8, 3, '2021-04-09 12:53:42', '2021-04-16', '2021-04-15 11:45:14'),
+			(1, 3, 2, '2021-04-15 12:14:51', '2021-05-10', '2021-05-10 10:15:21'),
+			(2, 5, 1, '2021-05-01 20:15:32', '2021-05-15', '2021-05-19 09:05:57'),
+			(3, 8, 3, '2021-04-16 14:45:34', '2021-04-22', '2021-04-22 19:34:15'),
+			(3, 4, 2, '2021-04-24 20:06:52', '2021-05-10', '2021-05-10 18:58:12');
+
+INSERT INTO papyrus.prestamo(socio_id, ejemplar_id, empleado_id, fecha_inicio, fecha_fin)
+	VALUES	(1, 4, 2, '2021-05-18 13:02:56', '2021-05-29'),
+			(2, 2, 3, '2021-05-14 18:41:59', '2021-06-03');
