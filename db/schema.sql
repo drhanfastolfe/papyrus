@@ -124,13 +124,11 @@ CREATE TABLE papyrus.empleado_rol
 ALTER TABLE papyrus.empleado_rol
     ADD FOREIGN KEY (empleado_id)
     REFERENCES papyrus.empleado (id)
-	ON DELETE CASCADE
     NOT VALID;
 
 ALTER TABLE papyrus.empleado_rol
     ADD FOREIGN KEY (rol_id)
     REFERENCES papyrus.rol (id)
-	ON DELETE CASCADE
     NOT VALID;
 
 ALTER TABLE papyrus.prestamo

@@ -19,6 +19,26 @@ public class Rol
 	
 	private String rol;
 
+	public Long getId()
+	{
+		return id;
+	}
+
+	public void setId(Long id)
+	{
+		this.id = id;
+	}
+
+	public List<Empleado> getListaEmpleado()
+	{
+		return listaEmpleado;
+	}
+
+	public void setListaEmpleado(List<Empleado> listaEmpleado)
+	{
+		this.listaEmpleado = listaEmpleado;
+	}
+
 	@ManyToMany(mappedBy = "setRoles")
     private List<Empleado> listaEmpleado;
 	

@@ -48,7 +48,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
     protected void configure(HttpSecurity http) throws Exception
     {
         http.authorizeRequests()
-            .antMatchers("/").hasAnyAuthority("USER", "ADMIN")
+            .antMatchers("/").permitAll()
             .antMatchers("/empleados/**").hasAuthority("ADMIN")
             .antMatchers(
                         "/libros/**", 
@@ -60,7 +60,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
                         "/socios/**").hasAnyAuthority("ADMIN", "USER")
             .anyRequest().authenticated()
             .and()
-            .formLogin().loginPage("/login").permitAll().defaultSuccessUrl("/libros/listaLibro").failureUrl("/login?error=true")
+            .formLogin().loginPage("/login").permitAll().defaultSuccessUrl("/libros/lista").failureUrl("/login?error=true")
             .and()
             .logout().logoutSuccessUrl("/login?logout").permitAll()
             .and()

@@ -19,6 +19,8 @@ import javax.persistence.OneToMany;
 import com.papyrus.prestamo.Prestamo;
 import com.papyrus.rol.Rol;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class Empleado
 {
@@ -30,6 +32,8 @@ public class Empleado
     private String apellidos;
     private String telefono;
     private String email;
+    
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate fecha_nac;
     private String usuario;
     private String contrasenia;
@@ -37,7 +41,7 @@ public class Empleado
     @OneToMany(mappedBy = "empleado")
     private List<Prestamo> listaPrestamos;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable
 	(
 		name = "empleado_rol",
@@ -159,5 +163,12 @@ public class Empleado
     public void setListaPrestamos(List<Prestamo> listaPrestamos)
     {
         this.listaPrestamos = listaPrestamos;
+    }
+
+    public String getNombreCompleto()
+    {
+        String nombreCompleto = this.apellidos + ", " + this.nombre;
+
+        return nombreCompleto;
     }
 }
