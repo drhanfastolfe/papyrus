@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PrestamosService
+public class PrestamoService
 {
     @Autowired
 	private PrestamoRepository repo;
@@ -16,9 +16,9 @@ public class PrestamosService
 		return repo.findAll();
 	}
 	
-	public void save(Prestamo rrestamo)
+	public void save(Prestamo prestamo)
 	{
-		repo.save(rrestamo);
+		repo.save(prestamo);
 	}
 	
 	public Prestamo findById(Long id)

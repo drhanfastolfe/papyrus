@@ -30,4 +30,9 @@ public class EmpleadoService
 	{
 		repo.deleteById(id);
 	}
+
+	public Empleado findByUsuario(String usuario)
+	{
+		return repo.findByUsuario(usuario);
+	}
 }

@@ -2,6 +2,7 @@ package com.papyrus.prestamo;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +15,8 @@ import com.papyrus.ejemplar.Ejemplar;
 import com.papyrus.empleado.Empleado;
 import com.papyrus.socio.Socio;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class Prestamo
 {
@@ -23,9 +26,13 @@ public class Prestamo
     private Long ejemplar_id;
     private Long socio_id;
     private Long empleado_id;
-    private LocalDateTime fecha_indicio = LocalDateTime.now();
+
+    // @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    private LocalDateTime fecha_inicio = LocalDateTime.now();
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate fecha_fin;
-    private LocalDate fecha_fin_real;
+    private LocalDateTime fecha_fin_real;
 
     @ManyToOne
     @JoinColumn(name = "ejemplar_id", insertable = false, updatable = false)
@@ -83,14 +90,21 @@ public class Prestamo
         this.empleado_id = empleado_id;
     }
 
-    public LocalDateTime getFecha_indicio()
+    public LocalDateTime getFecha_inicio()
     {
-        return fecha_indicio;
+        return fecha_inicio;
     }
 
-    public void setFecha_indicio(LocalDateTime fecha_indicio)
+    public String getFecha_inicioFormateada()
     {
-        this.fecha_indicio = fecha_indicio;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        
+        return this.getFecha_inicio().format(formatter);
+    }
+
+    public void setFecha_inicio(LocalDateTime fecha_inicio)
+    {
+        this.fecha_inicio = fecha_inicio;
     }
 
     public LocalDate getFecha_fin()
@@ -103,12 +117,12 @@ public class Prestamo
         this.fecha_fin = fecha_fin;
     }
 
-    public LocalDate getFecha_fin_real()
+    public LocalDateTime getFecha_fin_real()
     {
         return fecha_fin_real;
     }
 
-    public void setFecha_fin_real(LocalDate fecha_fin_real)
+    public void setFecha_fin_real(LocalDateTime fecha_fin_real)
     {
         this.fecha_fin_real = fecha_fin_real;
     }

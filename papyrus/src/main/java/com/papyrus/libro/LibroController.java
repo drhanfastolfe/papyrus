@@ -32,7 +32,7 @@ public class LibroController
 	private CategoriaService categoriaService;
 	
 	@GetMapping("libros/lista")
-	public String mostrarListaLibros(Model model)
+	public String mostrarListaLibro(Model model)
 	{
 		List<Libro> listaLibros = libroService.findAll();
 		model.addAttribute("listaLibros", listaLibros);

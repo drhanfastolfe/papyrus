@@ -29,5 +29,10 @@ public class SocioService
 	public void deleteById(Long id)
 	{
 		repo.deleteById(id);
-	} 
+	}
+
+	public Socio findByDni(String dni)
+	{
+		return repo.findByDni(dni);
+	}
 }

@@ -68,7 +68,7 @@ CREATE TABLE papyrus.prestamo
     empleado_id serial NOT NULL,
     fecha_inicio timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     fecha_fin date NOT NULL,
-    fecha_fin_real date,
+    fecha_fin_real timestamp,
     PRIMARY KEY (id)
 );
 
