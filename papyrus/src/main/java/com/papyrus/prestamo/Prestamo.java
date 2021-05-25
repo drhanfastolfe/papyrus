@@ -122,6 +122,23 @@ public class Prestamo
         return fecha_fin_real;
     }
 
+    public String getFecha_fin_realFormateada()
+    {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String fecha;
+
+        if(this.getFecha_fin_real() != null)
+        {
+            fecha = this.getFecha_fin_real().format(formatter);
+        }
+        else
+        {
+            fecha = " ";
+        }
+        
+        return fecha;
+    }
+
     public void setFecha_fin_real(LocalDateTime fecha_fin_real)
     {
         this.fecha_fin_real = fecha_fin_real;

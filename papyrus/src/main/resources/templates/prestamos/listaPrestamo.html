@@ -37,8 +37,9 @@
             <td th:text="${prestamo.empleado?.getNombreCompleto}"></td>
             <td th:text="${prestamo.getFecha_inicioFormateada}"></td>
             <td th:text="${prestamo.fecha_fin}"></td>
-            <td th:text="${prestamo.fecha_fin_real}"></td>
+            <td th:text="${prestamo.getFecha_fin_realFormateada}"></td>
             <td>
+              <a th:href="@{/prestamos/finalizar/{id}(id=${prestamo.id})}" class="btn btn-success btn-sm"><span data-feather="check-square"></span></a>
               <a th:href="@{/prestamos/editar/{id}(id=${prestamo.id})}" class="btn btn-warning btn-sm"><span data-feather="edit"></span></a>
               <a th:href="@{/prestamos/eliminar/{id}(id=${prestamo.id})}" class="btn btn-danger btn-sm"><span data-feather="trash-2"></span></a>
             </td>

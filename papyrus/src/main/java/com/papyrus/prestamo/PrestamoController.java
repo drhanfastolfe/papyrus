@@ -1,11 +1,13 @@
 package com.papyrus.prestamo;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.papyrus.empleado.EmpleadoService;
 import com.papyrus.socio.SocioService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -29,7 +31,7 @@ public class PrestamoController
     @GetMapping("prestamos/lista")
     public String mostrarListaPrestamo(Model model)
     {
-        List<Prestamo> listaPrestamos = prestamoService.findAll();
+        List<Prestamo> listaPrestamos = prestamoService.findAll(Sort.by(Sort.Direction.ASC, "id"));
 
         model.addAttribute("listaPrestamos", listaPrestamos);
 
@@ -91,6 +93,18 @@ public class PrestamoController
     public String eliminarPrestamo(@PathVariable Long id)
     {
         prestamoService.deleteById(id);
+
+        return "redirect:/prestamos/lista";
+    }
+
+    @GetMapping("prestamos/finalizar/{id}")
+    public String finalizarPrestamo(@PathVariable Long id)
+    {
+        Prestamo prestamoBd = prestamoService.findById(id);
+
+        prestamoBd.setFecha_fin_real(LocalDateTime.now());
+        
+        prestamoService.save(prestamoBd);
 
         return "redirect:/prestamos/lista";
     }
