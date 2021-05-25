@@ -31,10 +31,10 @@
           <tr th:each="prestamo : ${listaPrestamos}">
             <td th:text="${prestamo.id}"></td>
             <td th:text="${prestamo.ejemplar_id}"></td>
-            <td th:text="${prestamo.ejemplar.libro.titulo}"></td>
-            <td th:text="${prestamo.ejemplar.edicion}"></td>
-            <td th:text="${prestamo.socio.getNombreCompleto}"></td>
-            <td th:text="${prestamo.empleado.getNombreCompleto}"></td>
+            <td th:text="${prestamo.ejemplar?.libro.titulo}"></td>
+            <td th:text="${prestamo.ejemplar?.edicion}"></td>
+            <td th:text="${prestamo.socio?.getNombreCompleto}"></td>
+            <td th:text="${prestamo.empleado?.getNombreCompleto}"></td>
             <td th:text="${prestamo.getFecha_inicioFormateada}"></td>
             <td th:text="${prestamo.fecha_fin}"></td>
             <td th:text="${prestamo.fecha_fin_real}"></td>

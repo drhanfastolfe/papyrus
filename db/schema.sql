@@ -63,9 +63,9 @@ CREATE TABLE papyrus.socio
 CREATE TABLE papyrus.prestamo
 (
     id serial NOT NULL,
-    socio_id serial NOT NULL,
-    ejemplar_id serial NOT NULL,
-    empleado_id serial NOT NULL,
+    socio_id serial,
+    ejemplar_id serial,
+    empleado_id serial,
     fecha_inicio timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     fecha_fin date NOT NULL,
     fecha_fin_real timestamp,
@@ -134,17 +134,20 @@ ALTER TABLE papyrus.empleado_rol
 ALTER TABLE papyrus.prestamo
     ADD FOREIGN KEY (socio_id)
     REFERENCES papyrus.socio (id)
+	ON DELETE SET NULL
     NOT VALID;
 
 
 ALTER TABLE papyrus.prestamo
     ADD FOREIGN KEY (ejemplar_id)
     REFERENCES papyrus.ejemplar (id)
+	ON DELETE SET NULL
     NOT VALID;
 
 ALTER TABLE papyrus.prestamo
     ADD FOREIGN KEY (empleado_id)
     REFERENCES papyrus.empleado (id)
+	ON DELETE SET NULL
     NOT VALID;
 
 ALTER TABLE papyrus.libro_categoria
