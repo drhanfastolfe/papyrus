@@ -1,6 +1,10 @@
 package com.papyrus.prestamo;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import com.papyrus.socio.Socio;
+import com.papyrus.socio.SocioService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -11,10 +15,30 @@ public class PrestamoService
 {
     @Autowired
 	private PrestamoRepository repo;
+
+	@Autowired
+	private SocioService socioService;
 	
-	public List<Prestamo> findAll(Sort sort)
+	public List<Prestamo> findAll(Sort sort, String nombreSocio)
 	{
-		return repo.findAll();
+		List<Socio> listaSocios = new ArrayList<>();
+		List<Prestamo> listaPrestamos = new ArrayList<>();
+		 
+		if(nombreSocio != null)
+		{
+			listaSocios = socioService.searchByNombreApellidos(nombreSocio);
+
+			for (Socio socio : listaSocios)
+			{
+				listaPrestamos.addAll(socio.getListaPrestamos());	
+			}
+		}
+		else
+		{
+			listaPrestamos = repo.findAll();
+		}
+
+		return listaPrestamos;
 	}
 	
 	public void save(Prestamo prestamo)

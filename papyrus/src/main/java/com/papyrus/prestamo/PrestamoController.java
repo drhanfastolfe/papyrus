@@ -1,6 +1,7 @@
 package com.papyrus.prestamo;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.papyrus.empleado.EmpleadoService;
@@ -29,9 +30,18 @@ public class PrestamoController
     private SocioService socioService;
 
     @GetMapping("prestamos/lista")
-    public String mostrarListaPrestamo(Model model)
+    public String mostrarListaPrestamo(Model model, Long idPrestamo, String nombreSocio)
     {
-        List<Prestamo> listaPrestamos = prestamoService.findAll(Sort.by(Sort.Direction.ASC, "id"));
+        List<Prestamo> listaPrestamos = new ArrayList<>();
+        
+        if(idPrestamo != null)
+        {
+            listaPrestamos.add(prestamoService.findById(idPrestamo));
+        }
+        else
+        {
+            listaPrestamos = prestamoService.findAll(Sort.by(Sort.Direction.ASC, "id"), nombreSocio);
+        }
 
         model.addAttribute("listaPrestamos", listaPrestamos);
 

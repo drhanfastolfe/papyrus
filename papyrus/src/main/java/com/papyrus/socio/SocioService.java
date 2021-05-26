@@ -35,4 +35,9 @@ public class SocioService
 	{
 		return repo.findByDni(dni);
 	}
+
+	public List<Socio> searchByNombreApellidos(String nombreApellidos)
+	{
+		return repo.searchByNombreApellidos(nombreApellidos);
+	}
 }
