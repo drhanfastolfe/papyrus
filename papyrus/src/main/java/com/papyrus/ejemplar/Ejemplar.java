@@ -38,7 +38,7 @@ public class Ejemplar
     private LocalDateTime fecha_ins = LocalDateTime.now();
 
     @OneToMany(mappedBy = "ejemplar")
-    private List<Prestamo> prestamo;
+    private List<Prestamo> listaPrestamos;
 
     @ManyToOne
     @JoinColumn(name = "libro_id", insertable = false, updatable = false)
@@ -51,6 +51,16 @@ public class Ejemplar
     public Ejemplar()
     {
         
+    }
+
+    public List<Prestamo> getListaPrestamos()
+    {
+        return listaPrestamos;
+    }
+
+    public void setListaPrestamos(List<Prestamo> listaPrestamos)
+    {
+        this.listaPrestamos = listaPrestamos;
     }
 
     public Long getId()

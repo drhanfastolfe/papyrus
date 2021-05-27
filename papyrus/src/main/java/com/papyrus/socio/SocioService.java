@@ -40,4 +40,9 @@ public class SocioService
 	{
 		return repo.searchByNombreApellidos(nombreApellidos);
 	}
+
+	public List<Socio> search(String keyword)
+	{
+		return repo.search(keyword);
+	}
 }

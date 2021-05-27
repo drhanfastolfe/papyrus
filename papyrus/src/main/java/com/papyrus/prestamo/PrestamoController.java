@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.papyrus.empleado.EmpleadoService;
+import com.papyrus.main.MainService;
 import com.papyrus.socio.SocioService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +30,14 @@ public class PrestamoController
     @Autowired
     private SocioService socioService;
 
+    @Autowired
+    private MainService mainService;
+
     @GetMapping("prestamos/lista")
-    public String mostrarListaPrestamo(Model model, Long idPrestamo, String nombreSocio)
+    public String mostrarListaPrestamo(Model model, Long idPrestamo, String keyword)
     {
+        keyword = keyword != null ? mainService.normalizaStr(keyword) : null;
+
         List<Prestamo> listaPrestamos = new ArrayList<>();
         
         if(idPrestamo != null)
@@ -40,7 +46,7 @@ public class PrestamoController
         }
         else
         {
-            listaPrestamos = prestamoService.findAll(Sort.by(Sort.Direction.ASC, "id"), nombreSocio);
+            listaPrestamos = prestamoService.findAll(Sort.by(Sort.Direction.ASC, "id"), keyword);
         }
 
         model.addAttribute("listaPrestamos", listaPrestamos);

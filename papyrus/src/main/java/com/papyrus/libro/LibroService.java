@@ -30,4 +30,9 @@ public class LibroService
 	{
 		repo.deleteById(id);
 	}
+
+	public List<Libro> search(String keyword)
+	{
+		return repo.search(keyword);
+	}
 }

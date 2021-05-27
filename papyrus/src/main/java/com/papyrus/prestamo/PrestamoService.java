@@ -1,8 +1,15 @@
 package com.papyrus.prestamo;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
+import com.papyrus.ejemplar.Ejemplar;
+import com.papyrus.empleado.Empleado;
+import com.papyrus.empleado.EmpleadoService;
+import com.papyrus.libro.Libro;
+import com.papyrus.libro.LibroService;
 import com.papyrus.socio.Socio;
 import com.papyrus.socio.SocioService;
 
@@ -18,20 +25,47 @@ public class PrestamoService
 
 	@Autowired
 	private SocioService socioService;
+
+	@Autowired
+	private EmpleadoService empleadoService;
+
+	@Autowired
+	private LibroService libroService;
 	
-	public List<Prestamo> findAll(Sort sort, String nombreSocio)
+	public List<Prestamo> findAll(Sort sort, String keyword)
 	{
 		List<Socio> listaSocios = new ArrayList<>();
+		List<Empleado> listaEmpleados = new ArrayList<>();
+		List<Libro> listaLibros = new ArrayList<>();
+		Set<Prestamo> setPrestamos = new LinkedHashSet<>();
 		List<Prestamo> listaPrestamos = new ArrayList<>();
 		 
-		if(nombreSocio != null)
+		if(keyword != null)
 		{
-			listaSocios = socioService.searchByNombreApellidos(nombreSocio);
+			listaSocios = socioService.search(keyword);
+			listaEmpleados = empleadoService.search(keyword);
+			listaLibros = libroService.search(keyword);
 
 			for (Socio socio : listaSocios)
 			{
-				listaPrestamos.addAll(socio.getListaPrestamos());	
+				setPrestamos.addAll(socio.getListaPrestamos());	
 			}
+
+			for (Empleado empleado : listaEmpleados)
+			{
+				setPrestamos.addAll(empleado.getListaPrestamos());	
+			}
+
+			for (Libro libro : listaLibros)
+			{
+				for (Ejemplar ejemplar : libro.getListaEjemplares())
+				{
+					setPrestamos.addAll(ejemplar.getListaPrestamos());	
+				}
+			}
+
+			List<Prestamo> listaPrestamosSet = new ArrayList<>(setPrestamos);
+			listaPrestamos = listaPrestamosSet;
 		}
 		else
 		{

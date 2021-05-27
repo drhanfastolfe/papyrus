@@ -35,4 +35,9 @@ public class EmpleadoService
 	{
 		return repo.findByUsuario(usuario);
 	}
+
+	public List<Empleado> search(String keyword)
+	{
+		return repo.search(keyword);
+	}
 }
