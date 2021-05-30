@@ -36,7 +36,7 @@
             <td th:text="${libro.getCategoriasStr}"></td>
             <td th:text="${libro.getEditorialesStr}"></td>
             <td th:text="${libro.getEjemplaresCount}"></td>
-            <td th:text="${libro.getEjemplaresCount}"></td>
+            <td th:text="${libro.getEjemplaresDisponiblesCount}"></td>
             <td th:text="${libro.seccion.nombre}"></td>
             <td>
               <a th:href="@{/libros/editar/{id}(id=${libro.id})}" class="btn btn-warning btn-sm"><span data-feather="edit"></span></a>

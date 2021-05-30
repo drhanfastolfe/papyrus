@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 import com.papyrus.autor.Autor;
 import com.papyrus.categoria.Categoria;
 import com.papyrus.ejemplar.Ejemplar;
+import com.papyrus.prestamo.Prestamo;
 import com.papyrus.seccion.Seccion;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -200,5 +201,17 @@ public class Libro
 	public int getEjemplaresCount()
 	{
 		return this.getListaEjemplares().size();
+	}
+
+	public int getEjemplaresDisponiblesCount()
+	{
+		int count = 0;
+
+		for(Ejemplar ejemplar : this.listaEjemplares)
+		{
+			if (ejemplar.disponible()) count++;
+		}
+
+		return count;
 	}
 }

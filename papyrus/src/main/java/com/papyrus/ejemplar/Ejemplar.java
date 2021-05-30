@@ -172,4 +172,19 @@ public class Ejemplar
     {
         this.editorial = editorial;
     }
+
+    public boolean disponible()
+    {
+        boolean disponible = true;
+
+        for (Prestamo prestamo : this.listaPrestamos)
+        {
+            if (prestamo.activo())
+            {
+                disponible = false;
+            }
+        }
+            
+        return disponible;
+    }
 }

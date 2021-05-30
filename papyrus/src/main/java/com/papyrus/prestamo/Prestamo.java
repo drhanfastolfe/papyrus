@@ -173,4 +173,9 @@ public class Prestamo
     {
         this.empleado = empleado;
     }
+
+    public boolean activo()
+    {
+        return this.fecha_fin_real == null;
+    }
 }

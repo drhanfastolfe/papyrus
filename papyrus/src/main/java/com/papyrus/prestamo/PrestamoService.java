@@ -32,7 +32,7 @@ public class PrestamoService
 	@Autowired
 	private LibroService libroService;
 	
-	public List<Prestamo> findAll(Sort sort, String keyword)
+	public List<Prestamo> findAll(Sort sort, String keyword, boolean activo)
 	{
 		List<Socio> listaSocios = new ArrayList<>();
 		List<Empleado> listaEmpleados = new ArrayList<>();
@@ -70,6 +70,18 @@ public class PrestamoService
 		else
 		{
 			listaPrestamos = repo.findAll();
+		}
+
+		if(activo)
+		{
+			for(int i = 0; i < listaPrestamos.size(); i++)
+			{
+				if (!listaPrestamos.get(i).activo())
+				{
+					listaPrestamos.remove(i);
+					i--;	
+				}
+			}
 		}
 
 		return listaPrestamos;

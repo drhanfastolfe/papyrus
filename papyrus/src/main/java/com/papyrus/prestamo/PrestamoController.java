@@ -34,9 +34,10 @@ public class PrestamoController
     private MainService mainService;
 
     @GetMapping("prestamos/lista")
-    public String mostrarListaPrestamo(Model model, Long idPrestamo, String keyword)
+    public String mostrarListaPrestamo(Model model, Long idPrestamo, String keyword, String activo)
     {
         keyword = keyword != null ? mainService.normalizaStr(keyword) : null;
+        boolean boolActivo = activo != null ? true : false; 
 
         List<Prestamo> listaPrestamos = new ArrayList<>();
         
@@ -46,7 +47,7 @@ public class PrestamoController
         }
         else
         {
-            listaPrestamos = prestamoService.findAll(Sort.by(Sort.Direction.ASC, "id"), keyword);
+            listaPrestamos = prestamoService.findAll(Sort.by(Sort.Direction.ASC, "id"), keyword, boolActivo);
         }
 
         model.addAttribute("listaPrestamos", listaPrestamos);
