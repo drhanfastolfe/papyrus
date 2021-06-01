@@ -36,18 +36,21 @@ public class PrestamoController
     @GetMapping("prestamos/lista")
     public String mostrarListaPrestamo(Model model, Long idPrestamo, String keyword, String activo)
     {
-        keyword = keyword != null ? mainService.normalizaStr(keyword) : null;
-        boolean boolActivo = activo != null ? true : false; 
-
         List<Prestamo> listaPrestamos = new ArrayList<>();
+        boolean boolActivo = activo != null ? true : false; 
         
         if(idPrestamo != null)
         {
             listaPrestamos.add(prestamoService.findById(idPrestamo));
         }
+        else if(keyword != null || boolActivo)
+        {
+            keyword = mainService.normalizaStr(keyword);
+            listaPrestamos = prestamoService.search(keyword, boolActivo);
+        }
         else
         {
-            listaPrestamos = prestamoService.findAll(Sort.by(Sort.Direction.ASC, "id"), keyword, boolActivo);
+            listaPrestamos = prestamoService.findAll(Sort.by(Sort.Direction.ASC, "id"));
         }
 
         model.addAttribute("listaPrestamos", listaPrestamos);

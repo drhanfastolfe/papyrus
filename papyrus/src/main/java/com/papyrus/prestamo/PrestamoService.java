@@ -6,10 +6,9 @@ import java.util.List;
 import java.util.Set;
 
 import com.papyrus.ejemplar.Ejemplar;
+import com.papyrus.ejemplar.EjemplarService;
 import com.papyrus.empleado.Empleado;
 import com.papyrus.empleado.EmpleadoService;
-import com.papyrus.libro.Libro;
-import com.papyrus.libro.LibroService;
 import com.papyrus.socio.Socio;
 import com.papyrus.socio.SocioService;
 
@@ -30,61 +29,11 @@ public class PrestamoService
 	private EmpleadoService empleadoService;
 
 	@Autowired
-	private LibroService libroService;
+	private EjemplarService ejemplarService;
 	
-	public List<Prestamo> findAll(Sort sort, String keyword, boolean activo)
+	public List<Prestamo> findAll(Sort sort)
 	{
-		List<Socio> listaSocios = new ArrayList<>();
-		List<Empleado> listaEmpleados = new ArrayList<>();
-		List<Libro> listaLibros = new ArrayList<>();
-		Set<Prestamo> setPrestamos = new LinkedHashSet<>();
-		List<Prestamo> listaPrestamos = new ArrayList<>();
-		 
-		if(keyword != null)
-		{
-			listaSocios = socioService.search(keyword);
-			listaEmpleados = empleadoService.search(keyword);
-			listaLibros = libroService.search(keyword);
-
-			for (Socio socio : listaSocios)
-			{
-				setPrestamos.addAll(socio.getListaPrestamos());	
-			}
-
-			for (Empleado empleado : listaEmpleados)
-			{
-				setPrestamos.addAll(empleado.getListaPrestamos());	
-			}
-
-			for (Libro libro : listaLibros)
-			{
-				for (Ejemplar ejemplar : libro.getListaEjemplares())
-				{
-					setPrestamos.addAll(ejemplar.getListaPrestamos());	
-				}
-			}
-
-			List<Prestamo> listaPrestamosSet = new ArrayList<>(setPrestamos);
-			listaPrestamos = listaPrestamosSet;
-		}
-		else
-		{
-			listaPrestamos = repo.findAll();
-		}
-
-		if(activo)
-		{
-			for(int i = 0; i < listaPrestamos.size(); i++)
-			{
-				if (!listaPrestamos.get(i).activo())
-				{
-					listaPrestamos.remove(i);
-					i--;	
-				}
-			}
-		}
-
-		return listaPrestamos;
+		return repo.findAll();
 	}
 	
 	public void save(Prestamo prestamo)
@@ -100,5 +49,43 @@ public class PrestamoService
 	public void deleteById(Long id)
 	{
 		repo.deleteById(id);
+	}
+
+	public List<Prestamo> search(String keyword, boolean activo)
+	{
+		List<Prestamo> listaPrestamos = new ArrayList<>();
+		Set<Prestamo> setPrestamos = new LinkedHashSet<>();
+
+		for (Ejemplar ejemplar: ejemplarService.search(keyword))
+		{
+			setPrestamos.addAll(ejemplar.getListaPrestamos());	
+		}
+
+		for (Socio socio : socioService.search(keyword))
+		{
+			setPrestamos.addAll(socio.getListaPrestamos());	
+		}
+
+		for (Empleado empleado : empleadoService.search(keyword))
+		{
+			setPrestamos.addAll(empleado.getListaPrestamos());
+		}
+
+		List<Prestamo> listaPrestamosSet = new ArrayList<>(setPrestamos);
+		listaPrestamos = listaPrestamosSet;
+
+		if(activo)
+		{
+			for(int i = 0; i < listaPrestamos.size(); i++)
+			{
+				if (!listaPrestamos.get(i).activo())
+				{
+					listaPrestamos.remove(i);
+					i--;	
+				}
+			}
+		}
+
+		return listaPrestamos;
 	}
 }
