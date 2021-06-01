@@ -1,11 +1,13 @@
 package com.papyrus.libro;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.papyrus.autor.Autor;
 import com.papyrus.autor.AutorService;
 import com.papyrus.categoria.Categoria;
 import com.papyrus.categoria.CategoriaService;
+import com.papyrus.main.MainService;
 import com.papyrus.seccion.Seccion;
 import com.papyrus.seccion.SeccionService;
 
@@ -30,11 +32,25 @@ public class LibroController
 
 	@Autowired
 	private CategoriaService categoriaService;
+
+	@Autowired
+	private MainService mainService;
 	
 	@GetMapping("libros/lista")
-	public String mostrarListaLibro(Model model)
+	public String mostrarListaLibro(Model model, String keyword)
 	{
-		List<Libro> listaLibros = libroService.findAll();
+		List<Libro> listaLibros = new ArrayList<>();
+
+		if(keyword != null)
+		{
+			keyword = mainService.normalizaStr(keyword);
+			listaLibros = libroService.search(keyword);
+		}
+		else
+		{
+			listaLibros = libroService.findAll();
+		}
+
 		model.addAttribute("listaLibros", listaLibros);
 		
 		return "libros/listaLibro";

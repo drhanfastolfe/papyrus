@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class CategoriaService
 {
     @Autowired
-    CategoriaRepository repo;
+    private CategoriaRepository repo;
     
     public List<Categoria> findAll()
     {
@@ -29,5 +29,10 @@ public class CategoriaService
     public void deleteById(Long id)
     {
         repo.deleteById(id);
-    }    
+    }
+    
+    public List<Categoria> search(String keyword)
+    {
+        return repo.search(keyword);
+    }
 }

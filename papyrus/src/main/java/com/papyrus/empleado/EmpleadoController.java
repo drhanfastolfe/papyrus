@@ -1,7 +1,9 @@
 package com.papyrus.empleado;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.papyrus.main.MainService;
 import com.papyrus.rol.Rol;
 import com.papyrus.rol.RolService;
 
@@ -22,10 +24,24 @@ public class EmpleadoController
     @Autowired
     private RolService rolService;
 
+	@Autowired
+	private MainService mainService;
+
     @GetMapping("empleados/lista")
-	public String mostrarListaEmpleado(Model model)
+	public String mostrarListaEmpleado(Model model, String keyword)
 	{
-		List<Empleado> listaEmpleados = empleadoService.findAll();
+		List<Empleado> listaEmpleados = new ArrayList<>();
+
+		if(keyword != null)
+		{
+			keyword = mainService.normalizaStr(keyword);
+			listaEmpleados = empleadoService.search(keyword);
+		}
+		else
+		{
+			listaEmpleados = empleadoService.findAll();
+		}
+
 		model.addAttribute("listaEmpleados", listaEmpleados);
 		
 		return "empleados/listaEmpleado";

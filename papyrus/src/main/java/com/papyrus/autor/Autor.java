@@ -25,11 +25,21 @@ public class Autor
     private LocalDate fecha_nac;
 
     @ManyToMany(mappedBy = "listaAutores")
-    private List<Libro> libros;
+    private List<Libro> listaLibros;
 
     public Autor()
     {
         
+    }
+
+    public List<Libro> getListaLibros()
+    {
+        return listaLibros;
+    }
+
+    public void setListaLibros(List<Libro> listaLibros)
+    {
+        this.listaLibros = listaLibros;
     }
 
     public Long getId()

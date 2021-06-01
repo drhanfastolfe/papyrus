@@ -1,6 +1,9 @@
 package com.papyrus.socio;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import com.papyrus.main.MainService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,10 +18,24 @@ public class SocioController
     @Autowired
     private SocioService socioService;
 
+	@Autowired
+	private MainService mainService;
+
     @GetMapping("socios/lista")
-	public String mostrarListaSocio(Model model)
+	public String mostrarListaSocio(Model model, String keyword)
 	{
-		List<Socio> listaSocios = socioService.findAll();
+		List<Socio> listaSocios = new ArrayList<>();
+		
+		if(keyword != null)
+		{
+			keyword = mainService.normalizaStr(keyword); 
+			listaSocios = socioService.search(keyword);
+		}
+		else
+		{
+			listaSocios = socioService.findAll();
+		}
+
 		model.addAttribute("listaSocios", listaSocios);
 		
 		return "socios/listaSocio";

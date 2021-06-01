@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class AutorService
 {
     @Autowired
-    AutorRepository repo;
+    private AutorRepository repo;
     
     public List<Autor> findAll()
     {
@@ -29,5 +29,10 @@ public class AutorService
     public void deleteById(Long id)
     {
         repo.deleteById(id);
+    }
+
+    public List<Autor> search(String keyword)
+    {
+        return repo.search(keyword);
     }
 }

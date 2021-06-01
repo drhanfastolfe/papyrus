@@ -19,21 +19,21 @@ public class Categoria
     private String nombre;
 
     @ManyToMany(mappedBy = "listaCategorias")
-    private List<Libro> libros;
+    private List<Libro> listaLibros;
     
     public Categoria()
     {
         
     }
 
-    public List<Libro> getLibros()
+    public List<Libro> getListaLibros()
     {
-        return libros;
+        return listaLibros;
     }
 
-    public void setLibros(List<Libro> libros)
+    public void setLisstaLibros(List<Libro> listaLibros)
     {
-        this.libros = libros;
+        this.listaLibros = listaLibros;
     }
 
     public Categoria(String nombre)
