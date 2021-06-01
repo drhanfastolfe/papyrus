@@ -35,4 +35,9 @@ public class EditorialService
     {   
         return repo.findByNombre(nombre);
     }
+
+    public List<Editorial> search(String keyword)
+    {
+        return repo.search(keyword);
+    }
 }

@@ -1,6 +1,9 @@
 package com.papyrus.autor;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import com.papyrus.main.MainService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,10 +18,24 @@ public class AutorController
     @Autowired
     private AutorService autorService;
 
+	@Autowired
+	private MainService mainService;
+	
     @GetMapping("autores/lista")
-	public String mostrarListaAutores(Model model)
+	public String mostrarListaAutores(Model model, String keyword)
 	{
-		List<Autor> listaAutores = autorService.findAll();
+		List<Autor> listaAutores = new ArrayList<>();
+
+		if(keyword != null)
+		{
+			keyword = mainService.normalizaStr(keyword);
+			listaAutores = autorService.search(keyword);
+		}
+		else
+		{
+			listaAutores = autorService.findAll();
+		}
+
 		model.addAttribute("listaAutores", listaAutores);
 		
 		return "autores/listaAutor";

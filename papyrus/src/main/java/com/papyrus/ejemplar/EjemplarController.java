@@ -1,11 +1,13 @@
 package com.papyrus.ejemplar;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.papyrus.editorial.Editorial;
 import com.papyrus.editorial.EditorialService;
 import com.papyrus.libro.Libro;
 import com.papyrus.libro.LibroService;
+import com.papyrus.main.MainService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,10 +28,24 @@ public class EjemplarController
     @Autowired
     private EditorialService editorialService;
 
+	@Autowired
+	private MainService mainService;
+
     @GetMapping("ejemplares/lista")
-    public String mostrarListaEjemplar(Model model)
+    public String mostrarListaEjemplar(Model model, String keyword)
     {
-        List<Ejemplar> listaEjemplares = ejemplarService.findAll();
+        List<Ejemplar> listaEjemplares = new ArrayList<>();
+
+		if(keyword != null)
+		{
+			keyword = mainService.normalizaStr(keyword);
+			listaEjemplares = ejemplarService.search(keyword);
+		}
+		else
+		{
+			listaEjemplares = ejemplarService.findAll();
+		}
+
         model.addAttribute("listaEjemplares", listaEjemplares);
 
         return "ejemplares/listaEjemplar";

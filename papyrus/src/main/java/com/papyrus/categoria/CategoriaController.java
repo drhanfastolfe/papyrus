@@ -1,6 +1,9 @@
 package com.papyrus.categoria;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import com.papyrus.main.MainService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,10 +18,24 @@ public class CategoriaController
     @Autowired
     private CategoriaService categoriaService;
 
+	@Autowired
+	private MainService mainService;
+
     @GetMapping("categorias/lista")
-	public String mostrarListaCategoria(Model model)
+	public String mostrarListaCategoria(Model model, String keyword)
 	{
-		List<Categoria> listaCategorias = categoriaService.findAll();
+		List<Categoria> listaCategorias = new ArrayList<>();
+
+		if(keyword != null)
+		{
+			keyword = mainService.normalizaStr(keyword);
+			listaCategorias = categoriaService.search(keyword);
+		}
+		else
+		{
+			listaCategorias = categoriaService.findAll();
+		}
+
 		model.addAttribute("listaCategorias", listaCategorias);
 		
 		return "categorias/listaCategoria";

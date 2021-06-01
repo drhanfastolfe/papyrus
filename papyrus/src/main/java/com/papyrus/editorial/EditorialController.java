@@ -1,6 +1,9 @@
 package com.papyrus.editorial;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import com.papyrus.main.MainService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,10 +18,24 @@ public class EditorialController
     @Autowired
     private EditorialService editorialService;
 
+	@Autowired
+	private MainService mainService;
+
     @GetMapping("editoriales/lista")
-	public String mostrarListaEditorial(Model model)
+	public String mostrarListaEditorial(Model model, String keyword)
 	{
-		List<Editorial> listaEditoriales = editorialService.findAll();
+		List<Editorial> listaEditoriales = new ArrayList<>();
+
+		if(keyword != null)
+		{
+			keyword = mainService.normalizaStr(keyword);
+			listaEditoriales = editorialService.search(keyword);
+		}
+		else
+		{
+			listaEditoriales = editorialService.findAll();
+		}
+
 		model.addAttribute("listaEditoriales", listaEditoriales);
 		
 		return "editoriales/listaEditorial";
