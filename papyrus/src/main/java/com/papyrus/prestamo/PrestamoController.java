@@ -54,7 +54,8 @@ public class PrestamoController
         }
 
         model.addAttribute("listaPrestamos", listaPrestamos);
-
+        model.addAttribute("count", listaPrestamos.size());
+        
         return "prestamos/listaPrestamo";
     }
 

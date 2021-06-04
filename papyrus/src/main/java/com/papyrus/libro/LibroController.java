@@ -52,6 +52,7 @@ public class LibroController
 		}
 
 		model.addAttribute("listaLibros", listaLibros);
+		model.addAttribute("count", listaLibros.size());
 		
 		return "libros/listaLibro";
 	}

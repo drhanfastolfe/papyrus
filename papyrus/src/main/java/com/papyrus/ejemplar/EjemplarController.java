@@ -47,6 +47,7 @@ public class EjemplarController
 		}
 
         model.addAttribute("listaEjemplares", listaEjemplares);
+		model.addAttribute("count", listaEjemplares.size());
 
         return "ejemplares/listaEjemplar";
     }
