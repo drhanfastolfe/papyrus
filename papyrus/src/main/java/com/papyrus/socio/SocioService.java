@@ -1,5 +1,8 @@
 package com.papyrus.socio;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,5 +47,22 @@ public class SocioService
 	public List<Socio> search(String keyword)
 	{
 		return repo.search(keyword);
+	}
+
+	public List<Socio> blackList()
+	{
+		List<Socio> blackList = new ArrayList<>();
+		List<Socio> listaSocios = repo.findAll();
+
+		for (Socio socio : listaSocios)
+		{
+			if (socio.retrasos() > 0) blackList.add(socio);	
+		}
+		
+		Comparator<Socio> comparaRetrasos = (Socio s1, Socio s2) -> Integer.valueOf(s1.retrasos()).compareTo(Integer.valueOf(s2.retrasos())); 
+
+		Collections.sort(blackList, comparaRetrasos.reversed());
+		
+		return blackList;
 	}
 }

@@ -178,4 +178,21 @@ public class Prestamo
     {
         return this.fecha_fin_real == null;
     }
+
+    public boolean retraso()
+    {
+        boolean retraso = false;
+
+        if (!activo())
+        {
+            LocalDate fecha_fin_realLD = this.fecha_fin_real.toLocalDate();
+
+            if (fecha_fin_realLD.compareTo(this.fecha_fin) > 0)
+            {
+                retraso = true;
+            }
+        }
+
+        return retraso;
+    }
 }

@@ -93,4 +93,14 @@ public class SocioController
 		
 		return "redirect:/socios/lista";
 	}
+
+	@GetMapping("socios/blacklist")
+	public String mostrarBlaclistSocio(Model model)
+	{
+		List<Socio> blacklistSocios = socioService.blackList();
+
+		model.addAttribute("blacklistSocios", blacklistSocios);
+
+		return "/socios/blacklistSocio";
+	}
 }

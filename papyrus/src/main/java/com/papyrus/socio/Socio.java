@@ -122,4 +122,15 @@ public class Socio
         return nombreCompleto;
     }
     
+    public int retrasos()
+    {
+        int retrasos = 0;
+
+        for (Prestamo prestamo : listaPrestamos)
+        {
+            if (prestamo.retraso()) retrasos++;    
+        }
+
+        return retrasos;
+    }
 }
