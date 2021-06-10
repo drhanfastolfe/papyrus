@@ -176,7 +176,11 @@ public class Prestamo
 
     public boolean activo()
     {
-        return this.fecha_fin_real == null;
+        boolean activo = false;
+
+        if (this.fecha_fin_real == null) activo = true;
+        
+        return activo;
     }
 
     public boolean retraso()
@@ -188,6 +192,15 @@ public class Prestamo
             LocalDate fecha_fin_realLD = this.fecha_fin_real.toLocalDate();
 
             if (fecha_fin_realLD.compareTo(this.fecha_fin) > 0)
+            {
+                retraso = true;
+            }
+        }
+        else
+        {
+            LocalDate now = LocalDate.now();
+
+            if(now.compareTo(this.fecha_fin) > 0)
             {
                 retraso = true;
             }

@@ -51,7 +51,7 @@ public class PrestamoService
 		repo.deleteById(id);
 	}
 
-	public List<Prestamo> search(String keyword, boolean activo)
+	public List<Prestamo> search(String keyword, boolean activo, boolean retraso)
 	{
 		List<Prestamo> listaPrestamos = new ArrayList<>();
 		Set<Prestamo> setPrestamos = new LinkedHashSet<>();
@@ -85,6 +85,18 @@ public class PrestamoService
 				}
 			}
 		}
+
+		if(retraso)
+		{
+			for(int i = 0; i < listaPrestamos.size(); i++)
+			{
+				if (!listaPrestamos.get(i).retraso())
+				{
+					listaPrestamos.remove(i);
+					i--;	
+				}
+			}
+		}		
 
 		return listaPrestamos;
 	}
