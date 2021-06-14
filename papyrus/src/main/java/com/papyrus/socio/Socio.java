@@ -133,4 +133,9 @@ public class Socio
 
         return retrasos;
     }
+
+    public int prestamosCount()
+    {
+        return this.getListaPrestamos().size();
+    }
 }

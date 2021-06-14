@@ -1,6 +1,8 @@
 package com.papyrus.ejemplar;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -66,5 +68,21 @@ public class EjemplarService
         listaEjemplares = listaEjemplaresSet;
 
         return listaEjemplares;
+    }
+
+    public List<Ejemplar> ejemplaresMasUsados()
+    {
+        List<Ejemplar> ejemplaresMasUsados = repo.findAll();
+
+        Comparator<Ejemplar> comparaPrestamos = (Ejemplar e1, Ejemplar e2) -> Integer.valueOf(e1.getListaPrestamos().size()).compareTo(Integer.valueOf(e2.getListaPrestamos().size())); 
+
+		Collections.sort(ejemplaresMasUsados, comparaPrestamos.reversed());
+
+        if(ejemplaresMasUsados.size() > 5)
+		{
+			ejemplaresMasUsados = ejemplaresMasUsados.subList(0, 5);
+		}
+
+        return ejemplaresMasUsados;
     }
 }

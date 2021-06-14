@@ -213,4 +213,16 @@ public class Libro
 
 		return count;
 	}
+
+	public int prestamosCount()
+	{
+		int prestamos = 0;
+
+		for(Ejemplar ejemplar : this.getListaEjemplares())
+		{
+			prestamos += ejemplar.getListaPrestamos().size();
+		}
+
+		return prestamos;
+	}
 }
