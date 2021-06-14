@@ -65,4 +65,20 @@ public class SocioService
 		
 		return blackList;
 	}
+
+	public List<Socio> sociosMasActivos()
+	{
+		List<Socio> sociosMasActivos = repo.findAll();
+
+		Comparator<Socio> comparaPrestamos = (Socio s1, Socio s2) -> Integer.valueOf(s1.getListaPrestamos().size()).compareTo(Integer.valueOf(s2.getListaPrestamos().size())); 
+
+		Collections.sort(sociosMasActivos, comparaPrestamos.reversed());
+
+		if(sociosMasActivos.size() > 5)
+		{
+			sociosMasActivos = sociosMasActivos.subList(0, 5);
+		}
+
+		return sociosMasActivos;
+	}
 }

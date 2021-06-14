@@ -1,6 +1,8 @@
 package com.papyrus.libro;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -66,5 +68,37 @@ public class LibroService
 		listaLibros = listaLibrosSet;
 
 		return listaLibros;
+	}
+
+	public List<Libro> librosMasPrestados()
+	{
+		List<Libro> librosMasPrestados = repo.findAll();
+
+		Comparator<Libro> comparaPrestamos = (Libro l1, Libro l2) -> Integer.valueOf(l1.prestamosCount()).compareTo(Integer.valueOf(l2.prestamosCount())); 
+
+		Collections.sort(librosMasPrestados, comparaPrestamos.reversed());
+
+		if(librosMasPrestados.size() > 5)
+		{
+			librosMasPrestados = librosMasPrestados.subList(0, 5);
+		}
+
+		return librosMasPrestados;
+	}
+
+	public List<Libro> librosMasEjemplares()
+	{
+		List<Libro> librosMasEjemplares = findAll();
+
+		Comparator<Libro> comparaEjemplares = (Libro l1, Libro l2) -> Integer.valueOf(l1.getListaEjemplares().size()).compareTo(Integer.valueOf(l2.getListaEjemplares().size())); 
+
+		Collections.sort(librosMasEjemplares, comparaEjemplares.reversed());
+
+		if(librosMasEjemplares.size() > 5)
+		{
+			librosMasEjemplares = librosMasEjemplares.subList(0, 5);
+		}
+
+		return librosMasEjemplares;
 	}
 }

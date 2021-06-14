@@ -187,4 +187,9 @@ public class Ejemplar
             
         return disponible;
     }
+
+    public int prestamosCount()
+    {
+        return this.getListaPrestamos().size();
+    }
 }

@@ -19,6 +19,16 @@
             "mainClass": "com.papyrus.util.PassGenerator",
             "projectName": "papyrus",
             "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-Solution<papyrus>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.papyrus.util.Solution",
+            "projectName": "papyrus",
+            "args": ""
         }
     ]
 }

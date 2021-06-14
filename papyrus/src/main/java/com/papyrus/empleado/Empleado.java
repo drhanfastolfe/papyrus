@@ -170,4 +170,9 @@ public class Empleado
 
         return nombreCompleto;
     }
+
+    public int prestamosCount()
+    {
+        return this.getListaPrestamos().size();
+    }
 }
