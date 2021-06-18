@@ -60,4 +60,16 @@ public class Categoria
     {
         this.nombre = nombre;
     }
+
+    public int prestamosCount()
+    {
+        int prestamos = 0;
+
+        for (Libro libro : this.listaLibros)
+        {
+            prestamos += libro.prestamosCount();    
+        }
+
+        return prestamos;
+    }
 }

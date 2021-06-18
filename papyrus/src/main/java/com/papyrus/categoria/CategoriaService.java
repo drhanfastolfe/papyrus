@@ -1,5 +1,7 @@
 package com.papyrus.categoria;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,5 +36,21 @@ public class CategoriaService
     public List<Categoria> search(String keyword)
     {
         return repo.search(keyword);
+    }
+
+    public List<Categoria> categoriasMasLeidos()
+    {
+        List<Categoria> categoriaesMasLeidos = repo.findAll();
+        
+        Comparator<Categoria> comparaPrestamos = (Categoria c1, Categoria c2) -> Integer.valueOf(c1.prestamosCount()).compareTo(Integer.valueOf(c2.prestamosCount())); 
+
+		Collections.sort(categoriaesMasLeidos, comparaPrestamos.reversed());
+
+		if(categoriaesMasLeidos.size() > 5)
+		{
+			categoriaesMasLeidos = categoriaesMasLeidos.subList(0, 5);
+		}
+
+        return categoriaesMasLeidos;
     }
 }
