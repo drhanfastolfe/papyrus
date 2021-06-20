@@ -2,6 +2,10 @@ package com.papyrus.main;
 
 import java.util.List;
 
+import com.papyrus.autor.Autor;
+import com.papyrus.autor.AutorService;
+import com.papyrus.categoria.Categoria;
+import com.papyrus.categoria.CategoriaService;
 import com.papyrus.ejemplar.Ejemplar;
 import com.papyrus.ejemplar.EjemplarService;
 import com.papyrus.empleado.Empleado;
@@ -31,6 +35,12 @@ public class MainController
     @Autowired
     private EjemplarService ejemplarService;
 
+    @Autowired
+    private AutorService autorService;
+
+    @Autowired
+    private CategoriaService categoriaService;
+
     @GetMapping("/")
     public String index()
     {
@@ -51,7 +61,11 @@ public class MainController
         List<Libro> librosMasEjemplares = libroService.librosMasEjemplares();
         List<Empleado> empleadosMasActivos = empleadoService.empleadosMasActivos();
         List<Ejemplar> ejemplaresMasUsados = ejemplarService.ejemplaresMasUsados();
+        List<Autor> autoresMasLeidos = autorService.autoresMasLeidos();
+        List<Categoria> categoriasMasLeidos = categoriaService.categoriasMasLeidos();
 
+        model.addAttribute("autoresMasLeidos", autoresMasLeidos);
+        model.addAttribute("categoriasMasLeidos", categoriasMasLeidos);
         model.addAttribute("librosMasPrestados", librosMasPrestados);
         model.addAttribute("sociosMasActivos", sociosMasActivos);
         model.addAttribute("librosMasEjemplares", librosMasEjemplares);

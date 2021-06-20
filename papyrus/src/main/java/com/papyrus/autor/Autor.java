@@ -71,4 +71,16 @@ public class Autor
     {
         this.fecha_nac = fecha_nac;
     }
+
+    public int prestamosCount()
+    {
+        int prestamos = 0;
+
+        for (Libro libro : this.listaLibros)
+        {
+            prestamos += libro.prestamosCount();    
+        }
+
+        return prestamos;
+    }
 }

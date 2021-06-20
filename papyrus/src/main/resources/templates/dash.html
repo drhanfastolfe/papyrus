@@ -33,6 +33,44 @@
         </tbody>
       </table>
     </div>
+    <h3 class="mt-4">Autores más demandados</h3>
+    <div class="table-responsive">
+      <table class="table table-striped table-sm">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Lecturas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="autor : ${autoresMasLeidos}">
+            <td th:text="${autor.id}"></td>
+            <td th:text="${autor.getNombre}"></td>
+            <td th:text="${autor.prestamosCount}"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <h3 class="mt-4">Categorias favoritas</h3>
+    <div class="table-responsive">
+      <table class="table table-striped table-sm">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Lecturas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="categoria : ${categoriasMasLeidos}">
+            <td th:text="${categoria.id}"></td>
+            <td th:text="${categoria.nombre}"></td>
+            <td th:text="${categoria.prestamosCount}"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
     <h3 class="mt-4">Lectores más activos</h3>
     <div class="table-responsive">
       <table class="table table-striped table-sm">

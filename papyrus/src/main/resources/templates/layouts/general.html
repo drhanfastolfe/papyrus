@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="" />
   <title></title>
-
+  <link rel="icon" type="image/vnd.microsoft.icon" th:href="@{/img/favicon.ico}">
   <!-- Bootstrap core CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous" />
@@ -33,7 +33,7 @@
 
 <body>
   <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" th:href="@{/dash}">Papyrus</a>
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" th:href="@{/dash}"><img th:src="@{/img/papyrus-logo.png}" alt="papyrus-logo" width="40" height="40">&nbsp;&nbsp;Papyrus</a>
     <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
       data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -59,7 +59,7 @@
                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
                   aria-expanded="true" aria-controls="collapseOne">
                   <span data-feather="book"></span>
-                  Gestión de biblioteca
+                  &nbsp;Gestión de biblioteca
                 </button>
               </h2>
               <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne">
@@ -79,7 +79,7 @@
                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
                   aria-expanded="true" aria-controls="collapseTwo">
                   <span data-feather="users"></span>
-                  Gestión de socios
+                  &nbsp;Gestión de socios
                 </button>
               </h2>
               <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo">
@@ -96,7 +96,7 @@
                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree"
                   aria-expanded="true" aria-controls="collapseThree">
                   <span data-feather="users"></span>
-                  Gestión de empleados
+                  &nbsp;Gestión de empleados
                 </button>
               </h2>
               <div id="collapseThree" class="accordion-collapse collapse show" aria-labelledby="headingThree">
@@ -112,7 +112,7 @@
                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour"
                   aria-expanded="true" aria-controls="collapseFour">
                   <span data-feather="calendar"></span>
-                  Gestión de préstamos
+                  &nbsp;Gestión de préstamos
                 </button>
               </h2>
               <div id="collapseFour" class="accordion-collapse collapse show" aria-labelledby="headingFour">
