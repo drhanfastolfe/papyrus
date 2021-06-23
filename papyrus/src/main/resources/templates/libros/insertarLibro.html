@@ -16,7 +16,7 @@
       <fieldset>
         <div class="form-group">
           <label class="form-label mt-4">Selecciona autor/es o
-            <a th:href="@{/auotres/insertar}" class="btn btn-info btn-sm">inserta uno nuevo</a></label>
+            <a th:href="@{/autores/insertar}" class="btn btn-info btn-sm">inserta uno nuevo</a></label>
           <select class="form-select" multiple="" th:field="*{listaAutores}">
             <option th:each="autor : ${listaAutoresBd}" th:value="${autor.id}" th:text="${autor.nombre}"></option>
           </select>
